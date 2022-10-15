@@ -46,11 +46,12 @@
   i18n.defaultLocale = "zh_CN.utf8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      displayManager.gdm.wayland = true;
+      desktopManager.gnome.enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -102,6 +103,10 @@
     #  thunderbird
     ];
   };
+
+  # sway
+  programs.sway.enable = true;
+  programs.waybar.enable = true;
 
   i18n.inputMethod.enabled = "fcitx5";
   i18n.inputMethod.fcitx5.addons = with pkgs; [
