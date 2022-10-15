@@ -42,15 +42,14 @@
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "zh_CN.utf8";
-
   # Enable the X11 windowing system.
   services.xserver = {
       enable = true;
       displayManager.gdm.enable = true;
       displayManager.gdm.wayland = true;
+      displayManager.defaultSession = "sway";
       desktopManager.gnome.enable = true;
+      libinput.enable = true; # Enable touchpad support
   };
 
   # Configure keymap in X11
@@ -79,9 +78,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.azurice = {
     isNormalUser = true;
@@ -94,13 +90,9 @@
       fcitx5
       fcitx5-gtk
       fcitx5-rime
-    # qv2ray
-    # v2ray
       (callPackage ./clash.nix { })
       sway
       waybar
-      # config.nur.repos.linyinfeng.clash-for-windows
-    #  thunderbird
     ];
   };
 
@@ -108,6 +100,8 @@
   programs.sway.enable = true;
   programs.waybar.enable = true;
 
+  # Select internationalisation properties.
+  i18n.defaultLocale = "zh_CN.utf8";
   i18n.inputMethod.enabled = "fcitx5";
   i18n.inputMethod.fcitx5.addons = with pkgs; [
     fcitx5-rime
