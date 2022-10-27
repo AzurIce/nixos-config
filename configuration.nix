@@ -18,12 +18,6 @@
     '';
   };
 
-  # nixpkgs.config.packageOverrides = pkgs: {
-  #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-  #     inherit pkgs;
-  #   };
-  # };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -82,19 +76,27 @@
   users.users.azurice = {
     isNormalUser = true;
     description = "AzurIce";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [
       firefox
       python
       obsidian
       fcitx5
-      fcitx5-gtk
       fcitx5-rime
       (callPackage ./clash.nix { })
-      sway
-      waybar
+# sway
+# waybar
+      wl-clipboard
+      wlogout
+      alacritty
+      wluma
+      light
     ];
   };
+
+
+  programs.git.enable = true;
+  programs.htop.enable = true;
 
   # sway
   programs.sway.enable = true;
@@ -106,7 +108,6 @@
   i18n.inputMethod.fcitx5.addons = with pkgs; [
     fcitx5-rime
     fcitx5-chinese-addons
-    fcitx5-gtk
   ];
   i18n.inputMethod.fcitx5.enableRimeData = true;
 
@@ -118,7 +119,7 @@
   environment.systemPackages = with pkgs; [
     ntfs3g
     neovim
-    git
+# git
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
