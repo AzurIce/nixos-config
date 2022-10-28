@@ -5,6 +5,22 @@
 { config, pkgs, ... }:
 
 {
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+  system = {
+    autoUpgrade = {
+      enable = true;
+      channel = "https://nixos.org/channels/nixos-unstable";
+    };
+    stateVersion = "22.05";
+  };
+
+  time.timeZone = "Asia/Shanghai";
+
   imports = [
     ./hardware-configuration.nix
   ];
@@ -17,6 +33,25 @@
   networking.proxy.default = "127.0.0.1:7890";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  environment.variables = {
+    XDG_CURRENT_DESKTOP = "Unity";
+  };
+
+  services = {
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+    openssh = {
+      enable = true;
+    };
+  };
+
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+
   users.users.azurice = {
     isNormalUser = true;
     description = "AzurIce";
@@ -24,26 +59,47 @@
     packages = with pkgs; [
       (callPackage ./clash.nix { })
       firefox
+      chromium
       obsidian
       sway
       waybar
+      libappindicator
+      syncthing
+      syncthing-tray
+      config.nur.repos.iagocq.parsec
+      config.nur.repos.xddxdd.wechat-uos
+    # config.nur.repos.rewine.electron-netease-cloud-music
+    # config.nur.repos.xe.microsoft-edge-dev
+    # todesk
     # thunderbird
     ];
   };
+
+  programs.chromium.enable = true;
+
+  xdg.portal.wlr.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     ntfs3g
     neovim
+    neofetch
+    vscode
     git
     wayland
     wl-clipboard
     python
     alacritty
+    kitty
     nerdfonts
     wget
     killall
+    pipewire
+    wireplumber
+    alsa-lib
+    alsa-utils
+    pulsemixer
   ];
 
   fonts.fonts = [
@@ -58,17 +114,9 @@
     light
     wluma
   ];
+  programs.light.enable = true;
   programs.waybar.enable = true;
 
   programs.neovim.vimAlias = true;
   programs.neovim.viAlias = true;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
-
-
-  system.stateVersion = "22.05"; # Did you read the comment?
-
 }
