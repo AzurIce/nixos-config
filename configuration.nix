@@ -43,6 +43,7 @@
     alacritty
     nerdfonts
     wget
+    killall
   ];
 
   fonts.fonts = [
