@@ -5,6 +5,7 @@
 { config, pkgs, ... }:
 
 {
+  networking.hostName = "AzurIce";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
     automatic = true;
@@ -61,13 +62,20 @@
       firefox
       chromium
       obsidian
-      sway
+#     sway
       waybar
+      hyprpaper
       libappindicator
       syncthing
       syncthing-tray
       config.nur.repos.iagocq.parsec
       config.nur.repos.xddxdd.wechat-uos
+      config.nur.repos.xddxdd.wechat-uos-bin
+      netease-cloud-music-gtk
+#     fcitx5
+      fcitx5-gtk
+      fcitx5-lua
+      fcitx5-configtool
     # config.nur.repos.rewine.electron-netease-cloud-music
     # config.nur.repos.xe.microsoft-edge-dev
     # todesk
@@ -75,9 +83,22 @@
     ];
   };
 
+  i18n.inputMethod.enabled = "fcitx5";
+  i18n.inputMethod.fcitx5.addons = with pkgs; [
+    fcitx5-rime
+    fcitx5-chinese-addons
+  ];
+
+# Hyprland
+  programs.hyprland = {
+      enable = true;
+  };
+
   programs.chromium.enable = true;
 
+  xdg.portal.enable = true;
   xdg.portal.wlr.enable = true;
+  # xdg.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -91,6 +112,7 @@
     wl-clipboard
     python
     alacritty
+    wofi
     kitty
     nerdfonts
     wget
@@ -119,4 +141,21 @@
 
   programs.neovim.vimAlias = true;
   programs.neovim.viAlias = true;
+
+
+# syncthing
+  services.syncthing = {
+      enable = true;
+      devices = {
+        DESKTOP = {
+            id = "D2KODQT-PE2DR2U-EOZPXTY-NF7VPYK-UM4GSC3-LC3XHYP-TBR5ZNQ-G3HDFA2";
+        };
+      };
+      folders = {
+          "/home/azurice/Files/Syncthing" = {
+              id = "syncthing";
+              devices = [ "DESKTOP" ];
+          };
+      };
+  };
 }
