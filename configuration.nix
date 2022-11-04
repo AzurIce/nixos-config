@@ -5,13 +5,36 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "AzurIce";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  ##### imports #####
+  imports = [
+    ./hardware-configuration.nix
+    ./modules/desktop/hyprland
+    ./modules/programs/fcitx5
+  ];
+
+  ##### networking #####
+  networking = {
+      hostName = "AzurIce";
+      networkmanager.enable = true;
+      proxy.default = "127.0.0.1:7890";
+      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
+
+  ##### nix #####
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+  nixpkgs.config.allowUnfree = true;
+
+  ##### system #####
   system = {
     autoUpgrade = {
       enable = true;
@@ -22,17 +45,9 @@
 
   time.timeZone = "Asia/Shanghai";
 
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.networkmanager.enable = true;
-  networking.proxy.default = "127.0.0.1:7890";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   environment.variables = {
     XDG_CURRENT_DESKTOP = "Unity";
@@ -47,6 +62,9 @@
       jack.enable = true;
     };
     openssh = {
+      enable = true;
+    };
+    dbus = {
       enable = true;
     };
   };
@@ -72,10 +90,6 @@
       config.nur.repos.xddxdd.wechat-uos
       config.nur.repos.xddxdd.wechat-uos-bin
       netease-cloud-music-gtk
-#     fcitx5
-      fcitx5-gtk
-      fcitx5-lua
-      fcitx5-configtool
     # config.nur.repos.rewine.electron-netease-cloud-music
     # config.nur.repos.xe.microsoft-edge-dev
     # todesk
@@ -83,24 +97,9 @@
     ];
   };
 
-  i18n.inputMethod.enabled = "fcitx5";
-  i18n.inputMethod.fcitx5.addons = with pkgs; [
-    fcitx5-rime
-    fcitx5-chinese-addons
-  ];
-
-# Hyprland
-  programs.hyprland = {
-      enable = true;
-  };
+  programs.xwayland.enable = true;
 
   programs.chromium.enable = true;
-
-  xdg.portal.enable = true;
-  xdg.portal.wlr.enable = true;
-  # xdg.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr];
-
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     ntfs3g
@@ -124,8 +123,10 @@
     pulsemixer
   ];
 
-  fonts.fonts = [
-      pkgs.nerdfonts
+  fonts.fonts = with pkgs; [
+      nerdfonts
+      noto-fonts-emoji
+      wqy_microhei
   ];
 
   programs.sway.enable = true;
