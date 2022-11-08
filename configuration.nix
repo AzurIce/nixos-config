@@ -89,13 +89,37 @@
       config.nur.repos.iagocq.parsec
       config.nur.repos.xddxdd.wechat-uos
       config.nur.repos.xddxdd.wechat-uos-bin
+      config.nur.repos.linyinfeng.wemeet
+      piper
+    # solaar
+    # config.nur.repos.rewine.aliyunpan
       netease-cloud-music-gtk
+      libreoffice
+      wpsoffice
+    # obs-studio
+    # lutris
+    # mono
+    # logiops
+      gnome.nautilus
+      ranger
     # config.nur.repos.rewine.electron-netease-cloud-music
     # config.nur.repos.xe.microsoft-edge-dev
     # todesk
     # thunderbird
     ];
   };
+
+  # hardware.logitech.wireless.enable = true;
+  services.ratbagd.enable = true;
+
+  nixpkgs.overlays = [
+    # Waybar needs to be compiled with the experimental flag for wlr/workspaces to work
+    (self: super: {
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+    })
+  ];
 
   programs.xwayland.enable = true;
 
