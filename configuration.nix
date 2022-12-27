@@ -50,7 +50,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   environment.variables = {
-    XDG_CURRENT_DESKTOP = "Unity";
+    EDITOR = "nvim";
+
+    # GBM
+    GBM_BACKEND = "nvidia-drm";
+    CLUTTER_BACKEND = "wayland";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
   };
 
   services = {
@@ -69,7 +75,31 @@
     };
   };
 
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware = {
+    nvidia = {
+      open = true;
+      modesetting.enable = true;
+    };
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        vaapiIntel
+        nvidia-vaapi-driver
+        vaapiVdpau
+        libvdpau-va-gl
+        glxinfo
+        libva
+        mesa
+        libva-utils
+      ];
+    };
+    pulseaudio.support32Bit = true;
+  };
+# services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
 
   users.users.azurice = {
     isNormalUser = true;
@@ -96,21 +126,40 @@
       netease-cloud-music-gtk
       libreoffice
       wpsoffice
-    # obs-studio
+      obs-studio
+      obs-studio-plugins.wlrobs
+      obs-studio-plugins.obs-vkcapture
+      obs-studio-plugins.obs-pipewire-audio-capture
+    # ffmpeg
+      ffmpeg_5
+      wf-recorder
     # lutris
     # mono
     # logiops
       gnome.nautilus
+      pcmanfm
       ranger
+      xdg-utils
+      unzip
+      gcc
+      clang
+      cargo
+      qt6.qtwayland
+      libnotify
+      wlr-randr
     # config.nur.repos.rewine.electron-netease-cloud-music
     # config.nur.repos.xe.microsoft-edge-dev
     # todesk
     # thunderbird
+      flac
     ];
   };
 
   # hardware.logitech.wireless.enable = true;
   services.ratbagd.enable = true;
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   nixpkgs.overlays = [
     # Waybar needs to be compiled with the experimental flag for wlr/workspaces to work
@@ -132,6 +181,12 @@
     vscode
     git
     wayland
+    wayland-utils
+    wayland-protocols
+    egl-wayland
+    wine-wayland
+    glfw-wayland
+
     wl-clipboard
     python
     alacritty
@@ -140,7 +195,10 @@
     nerdfonts
     wget
     killall
+
     pipewire
+    pipewire-media-session
+    pipecontrol
     wireplumber
     alsa-lib
     alsa-utils
