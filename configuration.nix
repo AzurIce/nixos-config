@@ -10,6 +10,17 @@
       ./hardware-configuration.nix
     ];
 
+  nix.settings = {
+    # Hyprland Cachix
+    substituters = [
+      "https://hyprland.cachix.org"
+    ];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+    experimental-features = [ "nix-command" "flakes" ];
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -63,6 +74,7 @@
     packages = with pkgs; [
       git
       neovim
+      helix
     ];
   };
   # users.users.alice = {
