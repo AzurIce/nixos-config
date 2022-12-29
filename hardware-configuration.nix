@@ -14,27 +14,18 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-   { device = "/dev/disk/by-uuid/80ba2cc8-fd55-4164-99af-e576b5f4335e";
-       fsType = "ext4";
-     };
+    { device = "/dev/disk/by-uuid/64146f1c-3185-4aa0-b501-8d25d949b991";
+      fsType = "ext4";
+    };
 
   fileSystems."/boot" =
-     { device = "/dev/disk/by-uuid/D745-9DEC";
-       fsType = "vfat";
-     };
+    { device = "/dev/disk/by-uuid/D745-9DEC";
+      fsType = "vfat";
+    };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/2a91ae12-e3f7-48a9-b596-c6c89c4d7d57"; }
+    [ { device = "/dev/disk/by-uuid/3d7597ce-e77d-4ad1-9b00-2afca231348e"; }
     ];
-
-  fileSystems."/home/azurice/Files" =
-    { device = "/dev/disk/by-uuid/2CA0167BA0164C28";
-      fsType = "ntfs";
-    };
-  fileSystems."/home/azurice/Games" =
-    { device = "/dev/disk/by-uuid/A9DBFABB4F870F30";
-      fsType = "ntfs";
-    };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -44,6 +35,7 @@
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

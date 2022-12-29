@@ -5,182 +5,115 @@
 { config, pkgs, ... }:
 
 {
-  ##### imports #####
-  imports = [
-    ./hardware-configuration.nix
-    ./modules/desktop/hyprland
-    ./modules/programs/fcitx5
-  ];
-
-  ##### networking #####
-  networking = {
-      hostName = "AzurIce";
-      networkmanager.enable = true;
-      proxy.default = "127.0.0.1:7890";
-      # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  };
-
-  ##### nix #####
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-  nixpkgs.config.allowUnfree = true;
-
-  ##### system #####
-  system = {
-    autoUpgrade = {
-      enable = true;
-      channel = "https://nixos.org/channels/nixos-unstable";
-    };
-    stateVersion = "22.05";
-  };
-
-  time.timeZone = "Asia/Shanghai";
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  environment.variables = {
-    XDG_CURRENT_DESKTOP = "Unity";
-  };
+  # networking.hostName = "nixos"; # Define your hostname.
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "laptop-blade";
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  services = {
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-    };
-    openssh = {
-      enable = true;
-    };
-    dbus = {
-      enable = true;
-    };
-  };
+  # Set your time zone.
+  time.timeZone = "Asia/Shanghai";
 
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  #   useXkbConfig = true; # use xkbOptions in tty.
+  # };
+
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+
+
+  
+
+  # Configure keymap in X11
+  # services.xserver.layout = "us";
+  # services.xserver.xkbOptions = {
+  #   "eurosign:e";
+  #   "caps:escape" # map caps to escape.
+  # };
+
+  # Enable CUPS to print documents.
+  # services.printing.enable = true;
+
+  # Enable sound.
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = true;
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.azurice = {
     isNormalUser = true;
-    description = "AzurIce";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "wheel" ];
     packages = with pkgs; [
-      (callPackage ./clash.nix { })
-      firefox
-      chromium
-      obsidian
-#     sway
-      waybar
-      hyprpaper
-      libappindicator
-      syncthing
-      syncthing-tray
-      config.nur.repos.iagocq.parsec
-      config.nur.repos.xddxdd.wechat-uos
-      config.nur.repos.xddxdd.wechat-uos-bin
-      config.nur.repos.linyinfeng.wemeet
-      piper
-    # solaar
-    # config.nur.repos.rewine.aliyunpan
-      netease-cloud-music-gtk
-      libreoffice
-      wpsoffice
-    # obs-studio
-    # lutris
-    # mono
-    # logiops
-      gnome.nautilus
-      ranger
-    # config.nur.repos.rewine.electron-netease-cloud-music
-    # config.nur.repos.xe.microsoft-edge-dev
-    # todesk
-    # thunderbird
+      git
+      neovim
     ];
   };
+  # users.users.alice = {
+  #   isNormalUser = true;
+  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  #   packages = with pkgs; [
+  #     firefox
+  #     thunderbird
+  #   ];
+  # };
 
-  # hardware.logitech.wireless.enable = true;
-  services.ratbagd.enable = true;
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  # environment.systemPackages = with pkgs; [
+  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #   wget
+  # ];
 
-  nixpkgs.overlays = [
-    # Waybar needs to be compiled with the experimental flag for wlr/workspaces to work
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    })
-  ];
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
-  programs.xwayland.enable = true;
+  # List services that you want to enable:
 
-  programs.chromium.enable = true;
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    ntfs3g
-    neovim
-    neofetch
-    vscode
-    git
-    wayland
-    wl-clipboard
-    python
-    alacritty
-    wofi
-    kitty
-    nerdfonts
-    wget
-    killall
-    pipewire
-    wireplumber
-    alsa-lib
-    alsa-utils
-    pulsemixer
-  ];
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
-  fonts.fonts = with pkgs; [
-      nerdfonts
-      noto-fonts-emoji
-      wqy_microhei
-  ];
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
 
-  programs.sway.enable = true;
-  programs.sway.extraPackages = with pkgs; [
-    wlogout
-    dmenu
-    swayidle
-    light
-    wluma
-  ];
-  programs.light.enable = true;
-  programs.waybar.enable = true;
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "22.11"; # Did you read the comment?
 
-  programs.neovim.vimAlias = true;
-  programs.neovim.viAlias = true;
-
-
-# syncthing
-  services.syncthing = {
-      enable = true;
-      devices = {
-        DESKTOP = {
-            id = "D2KODQT-PE2DR2U-EOZPXTY-NF7VPYK-UM4GSC3-LC3XHYP-TBR5ZNQ-G3HDFA2";
-        };
-      };
-      folders = {
-          "/home/azurice/Files/Syncthing" = {
-              id = "syncthing";
-              devices = [ "DESKTOP" ];
-          };
-      };
-  };
 }
+
