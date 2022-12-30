@@ -55,6 +55,8 @@
   # services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
+  hardware.nvidia.modesetting.enable = true;
+#  hardware.nvidia.open = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
