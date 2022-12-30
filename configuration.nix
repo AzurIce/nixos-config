@@ -21,6 +21,7 @@
     ];
     experimental-features = [ "nix-command" "flakes" ];
   };
+  nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -50,7 +51,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
@@ -76,8 +76,27 @@
       git
       neovim
       helix
+
+      kitty
+      wofi
+  # nerdfonts
+
+      python
+
+      waybar
+      hyprpaper
+      chromium
+      obsidian
+      (callPackage ./clash.nix { })
     ];
   };
+
+#  fonts.fonts = with pkgs; [
+#    nerdfonts
+#        noto-fonts-emoji
+#        wqy_microhei
+#  ];
+
   # users.users.alice = {
   #   isNormalUser = true;
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
