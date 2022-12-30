@@ -30,8 +30,11 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.hostName = "laptop-blade";
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "laptop-blade";
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    proxy.default = "127.0.0.1:7890";
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
