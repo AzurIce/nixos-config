@@ -57,6 +57,12 @@
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
 #  hardware.nvidia.open = true;
+  hardware.nvidia.prime = {
+    offload.enable = true;
+
+    intelBusId = "00:02.0";
+    nvidiaBusId = "01:00.0";
+  }
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
