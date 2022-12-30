@@ -14,7 +14,7 @@
     # Hyprland Cachix
     substituters = [
       "https://hyprland.cachix.org"
-      "https://mirrors.bfsu.edu.cn/ni-channels/store"
+      "https://mirrors.bfsu.edu.cn/nix-channels/store"
     ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
