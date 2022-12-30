@@ -96,11 +96,11 @@
     ];
   };
 
-#  fonts.fonts = with pkgs; [
-#    nerdfonts
-#        noto-fonts-emoji
-#        wqy_microhei
-#  ];
+  fonts.fonts = with pkgs; [
+    nerdfonts
+    noto-fonts-emoji
+    wqy_microhei
+  ];
 
   # users.users.alice = {
   #   isNormalUser = true;
