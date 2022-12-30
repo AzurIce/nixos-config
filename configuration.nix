@@ -62,7 +62,15 @@
 
     intelBusId = "00:02.0";
     nvidiaBusId = "01:00.0";
-  }
+  };
+
+  specialisation = {
+    external-display.configuration = {
+      system.nixos.tags = [ "external-display" ];
+      hardware.nvidia.prime.offload.enable = lib.mkForce false;
+      hardware.nvidia.powerManagement.enable = lib.mkForce false;
+    };
+  };
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
