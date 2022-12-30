@@ -84,7 +84,7 @@
 
       kitty
       wofi
-  # nerdfonts
+      neofetch
 
       python
 
