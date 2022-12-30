@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -60,8 +60,8 @@
   hardware.nvidia.prime = {
     offload.enable = true;
 
-    intelBusId = "00:02.0";
-    nvidiaBusId = "01:00.0";
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
   };
 
   specialisation = {
