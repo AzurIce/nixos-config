@@ -77,6 +77,19 @@ in
     enable = true;
     nvidiaPatches = true;
   };
+  xdg.portal = {
+      enable = true;
+      wlr.enable = true;
+  };
+  services = {
+      pipewire = {
+          enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
+          jack.enable = true;
+      };
+  };
   environment.systemPackages = [
     nvidia-offload
     launch-hyprland
@@ -149,10 +162,13 @@ in
       chromium
       obsidian
       (callPackage ./clash.nix { })
+      killall
 
       qt5ct
       libva
       nvidia-vaapi-driver
+
+      obs-studio
     ];
   };
 
