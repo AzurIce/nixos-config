@@ -4,6 +4,23 @@
 
 { config, pkgs, lib, ... }:
 
+let nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+  launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
+    export LIBVA_DRIVER_NAME=nvidia
+    export XDG_SESSION_TYPE=wayland
+    export GBM_BACKEND=nvidia-drm
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export WLR_NO_HARDWARE_CURSORS=1
+
+    exec Hyprland
+  '';
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -26,6 +43,9 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [
+      "nvidia-drm.modeset=1"
+  ];
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -53,10 +73,29 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
+  programs.hyprland = {
+    enable = true;
+    nvidiaPatches = true;
+  };
+  environment.systemPackages = [
+    nvidia-offload
+    launch-hyprland
+#    wlr-randr
+#    wayland
+#    wayland-scanner
+#    wayland-utils
+#    egl-wayland
+#    wayland-protocols
+  ];
   services.xserver.videoDrivers = [ "nvidia" ];
+#  services.xserver.screenSection = ''
+#    Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+#    Option         "AllowIndirectGLXProtocol" "off"
+#    Option         "TripleBuffer" "on"
+#  '';
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
-#  hardware.nvidia.open = true;
+  hardware.nvidia.open = true;
   hardware.nvidia.prime = {
     offload.enable = true;
 
@@ -104,11 +143,16 @@
 
       python
 
+      wlogout
       waybar
       hyprpaper
       chromium
       obsidian
       (callPackage ./clash.nix { })
+
+      qt5ct
+      libva
+      nvidia-vaapi-driver
     ];
   };
 
