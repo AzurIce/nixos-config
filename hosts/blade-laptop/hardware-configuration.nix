@@ -13,15 +13,22 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/64146f1c-3185-4aa0-b501-8d25d949b991";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/64146f1c-3185-4aa0-b501-8d25d949b991";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D745-9DEC";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/D745-9DEC";
       fsType = "vfat";
     };
+
+    "/home/azurice/File" = {
+       device = "/dev/disk/by-uuid/2CA0167BA0164C28";
+       fsType = "ntfs";
+     };
+  };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/3d7597ce-e77d-4ad1-9b00-2afca231348e"; }

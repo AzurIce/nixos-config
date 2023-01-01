@@ -27,6 +27,7 @@ in
       ./hardware-configuration.nix
     ];
 
+  ///// Nix and Nixpkgs settings /////
   nix.settings = {
     # Hyprland Cachix
     substituters = [
@@ -40,6 +41,7 @@ in
   };
   nixpkgs.config.allowUnfree = true;
 
+  ///// Booting /////
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -47,22 +49,17 @@ in
       "nvidia-drm.modeset=1"
   ];
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  ///// Networking /////
   networking = {
     hostName = "laptop-blade";
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     proxy.default = "127.0.0.1:7890";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
-  # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  ///// localization /////
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
   # console = {
@@ -71,6 +68,7 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
+  ///// Displat /////
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   programs.hyprland = {
@@ -94,19 +92,8 @@ in
     nvidia-offload
     launch-hyprland
     ntfs3g
-#    wlr-randr
-#    wayland
-#    wayland-scanner
-#    wayland-utils
-#    egl-wayland
-#    wayland-protocols
   ];
   services.xserver.videoDrivers = [ "nvidia" ];
-#  services.xserver.screenSection = ''
-#    Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
-#    Option         "AllowIndirectGLXProtocol" "off"
-#    Option         "TripleBuffer" "on"
-#  '';
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
@@ -125,6 +112,7 @@ in
     };
   };
 
+  ///// Keymap /////
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
@@ -142,6 +130,7 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  ///// User /////
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.azurice = {
     isNormalUser = true;
@@ -157,9 +146,12 @@ in
 
       python
 
+      gnome.nautilus
+      dolphin
       wlogout
       waybar
       hyprpaper
+      firefox
       chromium
       obsidian
       (callPackage ./clash.nix { })
@@ -173,20 +165,12 @@ in
     ];
   };
 
+  ///// fonts /////
   fonts.fonts = with pkgs; [
     nerdfonts
     noto-fonts-emoji
     wqy_microhei
   ];
-
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     firefox
-  #     thunderbird
-  #   ];
-  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
