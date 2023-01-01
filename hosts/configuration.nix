@@ -93,7 +93,7 @@ in
   environment.systemPackages = with pkgs; [
     nvidia-offload
     launch-hyprland
-    ntfs-3g
+    ntfs3g
 #    wlr-randr
 #    wayland
 #    wayland-scanner
