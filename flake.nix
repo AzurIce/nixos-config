@@ -8,7 +8,7 @@
       system = "x86_64-linux";
       modules = [
         hyprland.nixosModules.default
-        ./hosts/blade-laptop/default.nix
+        ./hosts/blade-laptop
       ];
     };
   };

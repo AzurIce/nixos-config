@@ -27,7 +27,7 @@ in
       ./hardware-configuration.nix
     ];
 
-  ///// Nix and Nixpkgs settings /////
+  ##### Nix and Nixpkgs settings #####
   nix.settings = {
     # Hyprland Cachix
     substituters = [
@@ -41,7 +41,7 @@ in
   };
   nixpkgs.config.allowUnfree = true;
 
-  ///// Booting /////
+  ##### Booting #####
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -49,7 +49,7 @@ in
       "nvidia-drm.modeset=1"
   ];
 
-  ///// Networking /////
+  ##### Networking #####
   networking = {
     hostName = "laptop-blade";
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -59,7 +59,7 @@ in
 
   time.timeZone = "Asia/Shanghai";
 
-  ///// localization /////
+  ##### localization #####
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
   # console = {
@@ -68,7 +68,7 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  ///// Displat /////
+  ##### Display #####
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   programs.hyprland = {
@@ -112,7 +112,7 @@ in
     };
   };
 
-  ///// Keymap /////
+  ##### Keymap #####
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
@@ -130,7 +130,7 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  ///// User /////
+  ##### User #####
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.azurice = {
     isNormalUser = true;
@@ -165,7 +165,7 @@ in
     ];
   };
 
-  ///// fonts /////
+  ##### fonts #####
   fonts.fonts = with pkgs; [
     nerdfonts
     noto-fonts-emoji
