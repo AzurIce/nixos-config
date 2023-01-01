@@ -90,9 +90,10 @@ in
           jack.enable = true;
       };
   };
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     nvidia-offload
     launch-hyprland
+    ntfs-3g
 #    wlr-randr
 #    wayland
 #    wayland-scanner

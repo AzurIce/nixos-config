@@ -8,7 +8,7 @@
       system = "x86_64-linux";
       modules = [
         hyprland.nixosModules.default
-        ./configuration.nix
+        ./hosts.configuration.nix
       ];
     };
   };
