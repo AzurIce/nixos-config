@@ -148,6 +148,8 @@ in
 
       gnome.nautilus
       dolphin
+      ranger
+      syncthingtray
       wlogout
       waybar
       hyprpaper
@@ -163,6 +165,26 @@ in
 
       obs-studio
     ];
+  };
+
+  services.syncthing = {
+      enable = true;
+      user = "azurice";
+      dataDir = "/home/azurice/Documents";
+      configDir = "/home/azurice/Documents/.config/syncthing";
+      folders = {
+          "/home/azurice/File/__Syncthing__/Notes" = {
+              id = "Notes";
+          };
+      };
+      devices = {
+          DESKTOP-AORUS = {
+              id = "PFCP7N4-5QOYSNB-GQ5LUV3-W7BPLAZ-5AXLAMG-NHRH2OK-YPTX4LU-EFIRAAU";
+          };
+          DESKTOP = {
+              id = "D2KODQT-PE2DR2U-EOZPXTY-NF7VPYK-UM4GSC3-LC3XHYP-TBR5ZNQ-G3HDFA2";
+          };
+      };
   };
 
   ##### fonts #####
