@@ -4,6 +4,7 @@
   imports = [
       ../../modules/desktop/hyprland/home.nix
       ../../modules/programs/nvim/home.nix
+      ../../modules/programs/obs-studio/home.nix
   ];
 
   home = {
