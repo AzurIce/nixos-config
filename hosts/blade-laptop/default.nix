@@ -45,9 +45,6 @@ in
           jack.enable = true;
       };
   };
-  environment.systemPackages = with pkgs; [
-    launch-hyprland
-  ];
 
    specialisation = {
      external-display.configuration = {
@@ -152,14 +149,16 @@ in
 
   ##### System packages #####
   environment = {
-    systenPackages = with pkgs; [
+    systemPackages = with pkgs; [
+      launch-hyprland
+
       git
 
       neovim
       helix
 
       killall
-      ntfs-3g
+      ntfs3g
     ];
   };
 
