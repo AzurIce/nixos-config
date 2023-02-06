@@ -96,7 +96,7 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.open = true;
+  hardware.nvidia.open = false;
   hardware.nvidia.prime = {
     offload.enable = true;
 
@@ -104,21 +104,13 @@ in
     nvidiaBusId = "PCI:1:0:0";
   };
 
-  specialisation = {
-    external-display.configuration = {
-      system.nixos.tags = [ "external-display" ];
-      hardware.nvidia.prime.offload.enable = lib.mkForce false;
-      hardware.nvidia.powerManagement.enable = lib.mkForce false;
-    };
-  };
-
-  ##### Keymap #####
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
+   specialisation = {
+     external-display.configuration = {
+       system.nixos.tags = [ "external-display" ];
+       hardware.nvidia.prime.offload.enable = lib.mkForce false;
+       hardware.nvidia.powerManagement.enable = lib.mkForce false;
+     };
+   };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -126,9 +118,6 @@ in
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   ##### User #####
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -153,8 +142,8 @@ in
       wlogout
       waybar
       hyprpaper
-      firefox
       chromium
+      firefox-wayland
       obsidian
       (callPackage ./clash.nix { })
       killall
@@ -167,14 +156,24 @@ in
     ];
   };
 
+  # fcitx5-rime
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [fcitx5-rime];
+    fcitx5.enableRimeData = true;
+  };
+
+  # syncthing
   services.syncthing = {
       enable = true;
       user = "azurice";
       dataDir = "/home/azurice/Documents";
       configDir = "/home/azurice/Documents/.config/syncthing";
       folders = {
-          "/home/azurice/File/__Syncthing__/Notes" = {
+          "Notes" = {
               id = "Notes";
+              path = "/home/azurice/File/__Syncthing__/Notes";
+              devices = [ "DESKTOP-AORUS" "DESKTOP"];
           };
       };
       devices = {
