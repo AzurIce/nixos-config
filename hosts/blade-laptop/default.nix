@@ -75,7 +75,6 @@ in
       chromium
       firefox-wayland
       obsidian
-      killall
 
       qt5ct
       libva
