@@ -140,7 +140,6 @@ in
     fcitx5.enableRimeData = true;
   };
 
-
   ##### fonts #####
   fonts.fonts = with pkgs; [
     nerdfonts
