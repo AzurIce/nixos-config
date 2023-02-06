@@ -24,6 +24,7 @@ in
 
   ##### Nix and Nixpkgs settings #####
   nix.settings = {
+    auto-optimise-store = true;
     # Hyprland Cachix
     substituters = [
       "https://hyprland.cachix.org"
