@@ -20,9 +20,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/hardware/nvidia.nix
-      ../../modules/programs/syncthing.nix
-      ../../modules/programs/clash
-    ];
+    ] ++ ( import ../../modules/programs );
 
   ##### Nix and Nixpkgs settings #####
   nix.settings = {
