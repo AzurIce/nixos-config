@@ -10,6 +10,9 @@ let nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
 in
 {
   services.xserver.videoDrivers = [ "nvidia" ];
+  boot.kernelParams = [
+      "nvidia-drm.modeset=1"
+  ];
   hardware.nvidia = {
     open = false; # Don't use open source kernel module
     modesetting.enable = true;

@@ -22,45 +22,10 @@ in
       ../../modules/hardware/nvidia.nix
     ] ++ ( import ../../modules/programs );
 
-  ##### Nix and Nixpkgs settings #####
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      # Hyprland Cachix
-      substituters = [
-        "https://hyprland.cachix.org"
-        "https://mirrors.bfsu.edu.cn/nix-channels/store"
-      ];
-      trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      ];
-      experimental-features = [ "nix-command" "flakes" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 2d";
-    };
-  };
-  nixpkgs.config.allowUnfree = true;
-
   ##### Booting #####
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [
-      "nvidia-drm.modeset=1"
-  ];
-
-  ##### Networking #####
-  networking = {
-    hostName = "laptop-blade";
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-    proxy.default = "127.0.0.1:7890";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  };
-
-  time.timeZone = "Asia/Shanghai";
 
   ##### Display #####
   programs.hyprland = {
@@ -82,7 +47,6 @@ in
   };
   environment.systemPackages = with pkgs; [
     launch-hyprland
-    ntfs3g
   ];
 
    specialisation = {
@@ -93,21 +57,12 @@ in
      };
    };
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
   ##### User #####
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.azurice = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     hashedPassword = "$6$po.VmTKXBpQj3xzb$ZjABnUQnWSboNO0TX2rlIySqTUvU.0TnSuopaq07u44WwHznIrIgLzCO.fkjVeFJ8PicTxbMiyKpOg.NisaPH/";
     packages = with pkgs; [
-      git
-      neovim
-      helix
-
       kitty
       wofi
       neofetch
@@ -147,32 +102,7 @@ in
     wqy_microhei
   ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
-  # ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
+  ##### System #####
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
@@ -185,6 +115,53 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
+
+  ##### Nix and Nixpkgs settings #####
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      # Hyprland Cachix
+      substituters = [
+        "https://hyprland.cachix.org"
+        "https://mirrors.bfsu.edu.cn/nix-channels/store"
+      ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 2d";
+    };
+  };
+  nixpkgs.config.allowUnfree = true;
+
+  ##### Networking #####
+  networking = {
+    hostName = "laptop-blade";
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    proxy.default = "127.0.0.1:7890";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  };
+
+  time.timeZone = "Asia/Shanghai";
+
+  services.openssh.enable = true;
+
+  ##### System packages #####
+  environment = {
+    systenPackages = with pkgs; [
+      git
+
+      neovim
+      helix
+
+      killall
+      ntfs-3g
+    ];
+  };
 
 }
 
