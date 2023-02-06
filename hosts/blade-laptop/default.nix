@@ -23,22 +23,24 @@ in
     ] ++ ( import ../../modules/programs );
 
   ##### Nix and Nixpkgs settings #####
-  nix.settings = {
-    auto-optimise-store = true;
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      # Hyprland Cachix
+      substituters = [
+        "https://hyprland.cachix.org"
+        "https://mirrors.bfsu.edu.cn/nix-channels/store"
+      ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+      experimental-features = [ "nix-command" "flakes" ];
+    };
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 2d";
     };
-    # Hyprland Cachix
-    substituters = [
-      "https://hyprland.cachix.org"
-      "https://mirrors.bfsu.edu.cn/nix-channels/store"
-    ];
-    trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-    experimental-features = [ "nix-command" "flakes" ];
   };
   nixpkgs.config.allowUnfree = true;
 
