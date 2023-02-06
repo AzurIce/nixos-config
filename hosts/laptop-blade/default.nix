@@ -70,17 +70,13 @@ in
       dolphin
       ranger
       wlogout
-      waybar
       hyprpaper
       chromium
-      firefox-wayland
       obsidian
 
       qt5ct
       libva
       nvidia-vaapi-driver
-
-      obs-studio
     ];
   };
 
