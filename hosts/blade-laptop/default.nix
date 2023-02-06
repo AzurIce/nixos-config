@@ -62,18 +62,7 @@ in
 
   time.timeZone = "Asia/Shanghai";
 
-  ##### localization #####
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
   ##### Display #####
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
   programs.hyprland = {
     enable = true;
     nvidiaPatches = true;
@@ -103,9 +92,6 @@ in
        hardware.nvidia.powerManagement.enable = lib.mkForce false;
      };
    };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound.
   # sound.enable = true;
