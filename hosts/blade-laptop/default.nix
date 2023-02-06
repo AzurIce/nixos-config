@@ -2,9 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, user, ... }:
 
-let launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
+let 
+  launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
     export LIBVA_DRIVER_NAME=nvidia
     export XDG_SESSION_TYPE=wayland
     export GBM_BACKEND=nvidia-drm
@@ -19,6 +20,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/hardware/nvidia.nix
+      ../../modules/programs/syncthing.nix
     ];
 
   ##### Nix and Nixpkgs settings #####
@@ -107,6 +109,7 @@ in
   users.users.azurice = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    hashedPassword = "$6$po.VmTKXBpQj3xzb$ZjABnUQnWSboNO0TX2rlIySqTUvU.0TnSuopaq07u44WwHznIrIgLzCO.fkjVeFJ8PicTxbMiyKpOg.NisaPH/";
     packages = with pkgs; [
       git
       neovim
@@ -121,7 +124,7 @@ in
       gnome.nautilus
       dolphin
       ranger
-      syncthingtray
+      #syncthingtray
       wlogout
       waybar
       hyprpaper
@@ -146,28 +149,6 @@ in
     fcitx5.enableRimeData = true;
   };
 
-  # syncthing
-  services.syncthing = {
-      enable = true;
-      user = "azurice";
-      dataDir = "/home/azurice/Documents";
-      configDir = "/home/azurice/Documents/.config/syncthing";
-      folders = {
-          "Notes" = {
-              id = "Notes";
-              path = "/home/azurice/File/__Syncthing__/Notes";
-              devices = [ "DESKTOP-AORUS" "DESKTOP"];
-          };
-      };
-      devices = {
-          DESKTOP-AORUS = {
-              id = "PFCP7N4-5QOYSNB-GQ5LUV3-W7BPLAZ-5AXLAMG-NHRH2OK-YPTX4LU-EFIRAAU";
-          };
-          DESKTOP = {
-              id = "D2KODQT-PE2DR2U-EOZPXTY-NF7VPYK-UM4GSC3-LC3XHYP-TBR5ZNQ-G3HDFA2";
-          };
-      };
-  };
 
   ##### fonts #####
   fonts.fonts = with pkgs; [
