@@ -21,6 +21,7 @@ in
       ./hardware-configuration.nix
       ../../modules/hardware/nvidia.nix
       ../../modules/programs/syncthing.nix
+      ../../modules/programs/clash
     ];
 
   ##### Nix and Nixpkgs settings #####
@@ -131,7 +132,7 @@ in
       chromium
       firefox-wayland
       obsidian
-      (callPackage ../../modules/programs/clash.nix { })
+      #(callPackage ../../modules/programs/clash.nix { })
       killall
 
       qt5ct
