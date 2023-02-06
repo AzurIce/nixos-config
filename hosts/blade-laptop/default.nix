@@ -117,14 +117,12 @@ in
       gnome.nautilus
       dolphin
       ranger
-      #syncthingtray
       wlogout
       waybar
       hyprpaper
       chromium
       firefox-wayland
       obsidian
-      #(callPackage ../../modules/programs/clash.nix { })
       killall
 
       qt5ct
