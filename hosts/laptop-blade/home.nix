@@ -1,6 +1,11 @@
 { pkgs, user, ... }:
 
 {
+  imports = [
+      ../../modules/desktop/hyprland/home.nix
+      ../../modules/programs/nvim/home.nix
+  ];
+
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
