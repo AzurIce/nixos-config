@@ -4,14 +4,7 @@
 
 { config, pkgs, lib, ... }:
 
-let nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
-  '';
-  launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
+let launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
     export LIBVA_DRIVER_NAME=nvidia
     export XDG_SESSION_TYPE=wayland
     export GBM_BACKEND=nvidia-drm
@@ -25,6 +18,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/hardware/nvidia.nix
     ];
 
   ##### Nix and Nixpkgs settings #####
@@ -89,20 +83,9 @@ in
       };
   };
   environment.systemPackages = with pkgs; [
-    nvidia-offload
     launch-hyprland
     ntfs3g
   ];
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.open = false;
-  hardware.nvidia.prime = {
-    offload.enable = true;
-
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
 
    specialisation = {
      external-display.configuration = {
@@ -145,7 +128,7 @@ in
       chromium
       firefox-wayland
       obsidian
-      (callPackage ./clash.nix { })
+      (callPackage ../../modules/programs/clash.nix { })
       killall
 
       qt5ct
