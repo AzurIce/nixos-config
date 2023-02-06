@@ -52,6 +52,7 @@ keymap('', '<ESC>', ':nohlsearch<CR>', {noremap = true})
 ---------------
 -- Keymaping --
 ---------------
+keymap('c', 'w!!', ':SudaWrite', {})
 keymap('', 's', '<nop>', {})
 keymap('', 'S', ':w<CR>', {})
 keymap('', 'Q', ':q<CR>', {})
@@ -155,6 +156,8 @@ require('packer').startup(function(use)
             'nvim-lua/plenary.nvim'
         }
     }
+
+    use 'lambdalisue/suda.vim'
 
     -- 自动补全
     use 'hrsh7th/nvim-cmp'
