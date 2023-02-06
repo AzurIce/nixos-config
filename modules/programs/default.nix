@@ -1,0 +1,4 @@
+[
+  ./syncthing.nix
+  ./clash
+]

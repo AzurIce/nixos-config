@@ -1,21 +1,16 @@
 {
-  description = "AzurIce's NixOS Configuration";
   inputs = {
-    nur.url = github:nix-community/NUR;
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hyprland.url = "github:hyprwm/Hyprland";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = inputs @ { self, nixpkgs, nur, hyprland }: {
-    nixosConfigurations.blade-laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-            hyprland.nixosModules.default
-            nur.nixosModules.nur
-            ./configuration.nix
-        ];
-    };
+  outputs = inputs @ { self, nixpkgs, hyprland, home-manager, ... }: 
+  {
+    nixosConfigurations = let user = "azurice"; in (
+      import ./hosts {
+        inherit nixpkgs hyprland home-manager user;
+      }
+    );
   };
 }
