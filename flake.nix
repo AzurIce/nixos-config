@@ -2,17 +2,15 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = { self, nixpkgs, hyprland, ... }: {
-    nixosConfigurations = {
-      laptop-blade = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { user = "azurice"; };
-        modules = [
-          hyprland.nixosModules.default
-          ./hosts/blade-laptop
-        ];
-      };
-    };
+  outputs = inputs @ { self, nixpkgs, hyprland, home-manager, ... }: 
+  {
+    nixosConfigurations = let user = "azurice"; in (
+      import ./hosts {
+        inherit nixpkgs hyprland home-manager user;
+      }
+    );
   };
 }
