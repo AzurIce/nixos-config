@@ -63,6 +63,7 @@ in
       kitty
       wofi
       neofetch
+      hyprpaper
 
       python
 
