@@ -111,6 +111,7 @@
   time.timeZone = "Asia/Shanghai";
 
   services.openssh.enable = true;
+  services.dbus.enable = true;
 
   ##### System packages #####
   environment = {

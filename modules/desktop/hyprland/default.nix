@@ -2,9 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
-      pamixer
+    pamixer
+    wl-clipboard
   ];
 
+  programs.xwayland.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
