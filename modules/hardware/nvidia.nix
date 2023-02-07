@@ -16,6 +16,7 @@ in
   hardware.nvidia = {
     open = false; # Don't use open source kernel module
     modesetting.enable = true;
+    powerManagement.enable = true;
     prime = {
       offload.enable = true;
       intelBusId = "PCI:0:2:0";

@@ -30,7 +30,9 @@
 
     # Force using GBM backend
     # But With GBM_BACKEND = "nvidia-drm", firefox will crash.
-    # And when Obsidian launch, the system will freeze.
+    # Obsidian will randomly freezes the entire system with hardware acceleration on,
+    # it has no thing to do with this line but some problem of the intel driver,
+    # See https://forum.obsidian.md/t/obsidian-randomly-freezes-the-entire-system/45683
     # GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
