@@ -11,7 +11,12 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit user; };
-        home-manager.users.${user} = import ./laptop-blade/home.nix;
+        home-manager.users.${user} = {
+          imports = [
+            (import ./laptop-blade/home.nix)
+            hyprland.homeManagerModules.default
+          ];
+        };
       }
     ];
   };

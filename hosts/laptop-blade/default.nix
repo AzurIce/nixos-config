@@ -4,22 +4,12 @@
 
 { config, pkgs, lib, user, ... }:
 
-#let 
-#  launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
-#    export LIBVA_DRIVER_NAME=nvidia
-#    export XDG_SESSION_TYPE=wayland
-#    #export GBM_BACKEND=nvidia-drm
-#    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-#    export WLR_NO_HARDWARE_CURSORS=1
-#
-#    exec Hyprland
-#  '';
-#in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/hardware/nvidia.nix
+      ../../modules/desktop/hyprland
     ] ++ ( import ../../modules/programs );
 
   ##### Booting #####
@@ -28,31 +18,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   ##### Display #####
-  programs.hyprland = {
-    enable = true;
-    nvidiaPatches = true;
-  };
-  xdg.portal = {
-      enable = true;
-      wlr.enable = true;
-  };
-  services = {
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
+  specialisation = {
+    external-display.configuration = {
+      system.nixos.tags = [ "external-display" ];
+      hardware.nvidia.prime.offload.enable = lib.mkForce false;
+      hardware.nvidia.powerManagement.enable = lib.mkForce false;
     };
   };
-
-   specialisation = {
-     external-display.configuration = {
-       system.nixos.tags = [ "external-display" ];
-       hardware.nvidia.prime.offload.enable = lib.mkForce false;
-       hardware.nvidia.powerManagement.enable = lib.mkForce false;
-     };
-   };
 
   ##### User #####
   users.users.azurice = {
