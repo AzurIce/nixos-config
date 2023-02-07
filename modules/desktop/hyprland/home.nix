@@ -19,15 +19,17 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
 
-    #GBM
-    #LIBVA_DRIVER_NAME = "nvidia";
+    # Hyprland launch
+    LIBVA_DRIVER_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1";
 
     # Force using GBM backend
-    GBM_BACKEND = "nvidia-drm";
+    # But With GBM_BACKEND = "nvidia-drm", firefox will crash.
+    # And when Obsidian launch, the system will freeze.
+    # GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
     #CLUTTER_BACKEND = "wayland";
-    #WLR_NO_HARDWARE_CURSORS = "1";
 
     #vulkan
     #WLR_RENDERER = "vulkan";

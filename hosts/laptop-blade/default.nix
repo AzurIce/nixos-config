@@ -4,17 +4,17 @@
 
 { config, pkgs, lib, user, ... }:
 
-let 
-  launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
-    export LIBVA_DRIVER_NAME=nvidia
-    export XDG_SESSION_TYPE=wayland
-    #export GBM_BACKEND=nvidia-drm
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export WLR_NO_HARDWARE_CURSORS=1
-
-    exec Hyprland
-  '';
-in
+#let 
+#  launch-hyprland = pkgs.writeShellScriptBin "launch-hyprland" ''
+#    export LIBVA_DRIVER_NAME=nvidia
+#    export XDG_SESSION_TYPE=wayland
+#    #export GBM_BACKEND=nvidia-drm
+#    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+#    export WLR_NO_HARDWARE_CURSORS=1
+#
+#    exec Hyprland
+#  '';
+#in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -57,6 +57,7 @@ in
   ##### User #####
   users.users.azurice = {
     isNormalUser = true;
+    shell = pkgs.fish;
     extraGroups = [ "wheel" ];
     hashedPassword = "$6$po.VmTKXBpQj3xzb$ZjABnUQnWSboNO0TX2rlIySqTUvU.0TnSuopaq07u44WwHznIrIgLzCO.fkjVeFJ8PicTxbMiyKpOg.NisaPH/";
     packages = with pkgs; [
@@ -146,7 +147,7 @@ in
   ##### System packages #####
   environment = {
     systemPackages = with pkgs; [
-      launch-hyprland
+      #launch-hyprland
 
       git
 
