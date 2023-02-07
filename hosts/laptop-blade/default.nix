@@ -75,10 +75,6 @@
       hyprpaper
       chromium
       obsidian
-
-      qt5ct
-      libva
-      nvidia-vaapi-driver
     ];
   };
 
@@ -147,8 +143,6 @@
   ##### System packages #####
   environment = {
     systemPackages = with pkgs; [
-      #launch-hyprland
-
       git
 
       neovim
