@@ -35,6 +35,7 @@ in
   };
   environment.systemPackages = with pkgs; [
     nvidia-offload
+    qt5ct
     libva # An implementation for VA-API(Video Acceleration API)
     libva-utils
     glxinfo # Test utilities for OpenGL

@@ -6,6 +6,7 @@
       ../../modules/programs/nvim/home.nix
       ../../modules/programs/obs-studio/home.nix
       ../../modules/programs/waybar/home.nix
+      ../../modules/programs/firefox/home.nix
   ];
 
   home = {
