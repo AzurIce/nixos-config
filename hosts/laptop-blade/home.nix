@@ -7,6 +7,7 @@
       ../../modules/programs/obs-studio/home.nix
       ../../modules/programs/waybar/home.nix
       ../../modules/programs/firefox/home.nix
+      ../../modules/shell/fish/home.nix
   ];
 
   home = {
