@@ -17,6 +17,11 @@
               path = "/home/azurice/File/__Syncthing__/Notes";
               devices = [ "DESKTOP-AORUS" "DESKTOP"];
           };
+          "Pics" = {
+              id = "Pics";
+              path = "/home/azurice/File/__Syncthing__/Pics";
+              devices = [ "DESKTOP-AORUS" "DESKTOP"];
+          };
       };
       devices = {
           DESKTOP-AORUS = {
