@@ -8,6 +8,7 @@
       ../../modules/programs/waybar/home.nix
       ../../modules/programs/firefox/home.nix
       ../../modules/shell/fish/home.nix
+      ../../modules/programs/kitty/home.nix
   ];
 
   home = {
