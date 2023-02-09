@@ -33,12 +33,14 @@
     extraGroups = [ "wheel" ];
     hashedPassword = "$6$po.VmTKXBpQj3xzb$ZjABnUQnWSboNO0TX2rlIySqTUvU.0TnSuopaq07u44WwHznIrIgLzCO.fkjVeFJ8PicTxbMiyKpOg.NisaPH/";
     packages = with pkgs; [
-      kitty
+#      kitty
       wofi
       neofetch
       hyprpaper
 
       python
+      gcc
+      clang
 
       gnome.nautilus
       dolphin
@@ -58,11 +60,17 @@
   };
 
   ##### fonts #####
-  fonts.fonts = with pkgs; [
-    nerdfonts
-    noto-fonts-emoji
-    wqy_microhei
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      jetbrains-mono
+      nerdfonts
+      noto-fonts-emoji
+      lxgw-wenkai
+      wqy_microhei
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ];
+    fontconfig.hinting.autohint = true;
+  };
 
   ##### System #####
   # Copy the NixOS configuration file and link it from the resulting system
