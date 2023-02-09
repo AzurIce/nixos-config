@@ -4,8 +4,8 @@ let
   nvim = pkgs.fetchFromGitHub {
     owner = "AzurIce";
     repo = "nvim";
-    rev = "bef205c11f5553fc34d2c6b96ae2ff29a80299fe";
-    sha256 = "sha256-42mBjoIsc2AcKrMgOr7TW46QfoJ02vHKBbvVopnB6dw=";
+    rev = "d2a238f3ebda604821befb099433694814e64643";
+    sha256 = "sha256-J2Z53SJBuhRBpYlbWqbnXslBoX0NCYKvccWl7uEehyw=";
   };
 #  nvim = builtins.fetchGit {
 #    url = "https://github.com/AzurIce/nvim.git";
