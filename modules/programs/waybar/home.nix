@@ -1,9 +1,9 @@
 { pkgs, user, ... }:
 
 {
-    home.file.".config/waybar".source = ./waybar;
+  home.file.".config/waybar".source = ./waybar;
 
-    programs.waybar = {
-        enable = true;
-    };
+  programs.waybar = {
+      enable = true;
+  };
 }
