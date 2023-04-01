@@ -11,12 +11,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = { self, nixpkgs, hyprland, home-manager, nvim-config, ... }: 
+  outputs = { self, nixpkgs, hyprland, home-manager, nvim-config, ... }:
   {
-    nixosConfigurations = let user = "azurice"; in (
-      import ./hosts {
-        inherit nixpkgs hyprland home-manager user nvim-config;
-      }
-    );
+    nixosConfigurations = import ./hosts {
+      inherit nixpkgs hyprland home-manager nvim-config;
+    };
   };
 }
