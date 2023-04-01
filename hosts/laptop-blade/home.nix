@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, user, nvim-config, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
       ../../modules/programs/waybar/home.nix
       ../../modules/programs/firefox/home.nix
       ../../modules/shell/fish/home.nix
+      ../../modules/programs/git/home.nix
       ../../modules/programs/kitty/home.nix
   ];
 
@@ -19,12 +20,6 @@
   programs.home-manager.enable = true;
 
   home.stateVersion = "22.11";
-
-  programs.git = {
-    enable = true;
-    userName = "AzurIce";
-    userEmail = "973562770@qq.com";
-  };
 
   manual.manpages.enable = false;
 }

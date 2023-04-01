@@ -26,6 +26,8 @@
     };
   };
 
+  programs.fish.enable = true;
+
   ##### User #####
   users.users.azurice = {
     isNormalUser = true;
@@ -48,6 +50,7 @@
       wlogout
       hyprpaper
       chromium
+      microsoft-edge
       obsidian
     ];
   };
@@ -107,6 +110,9 @@
     };
   };
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.6"
+  ];
 
   ##### Networking #####
   networking = {

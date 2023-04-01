@@ -1,11 +1,11 @@
 { pkgs, user, ... }:
 
 {
-  wayland.windowManager.hyprland = {
-    enable = true;
-    nvidiaPatches = true;
-    systemdIntegration = true;
-  };
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+  #   nvidiaPatches = true;
+  #   systemdIntegration = true;
+  # };
   home.file.".config/hypr".source = ./hypr;
 
   # Note: the sessionVariables will be only set when home-manager manager a shell

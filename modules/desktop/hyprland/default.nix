@@ -6,11 +6,11 @@
     wl-clipboard
   ];
 
-  programs.xwayland.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-  };
+# programs.xwayland.enable = true;
+# xdg.portal = {
+#   enable = true;
+#   wlr.enable = true;
+# };
 
   services.pipewire = {
     enable = true;
