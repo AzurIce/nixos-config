@@ -1,6 +1,13 @@
-{ pkgs, user, ... }:
+{ pkgs, user, hyprland, ... }:
 
 {
+  imports = [ hyprland.nixosModules.default ];
+
+  programs.hyprland = {
+    enable = true;
+    nvidiaPatches = true;
+  };
+
   environment.systemPackages = with pkgs; [
     pamixer
     wl-clipboard

@@ -3,13 +3,8 @@
 {
   laptop-blade = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    specialArgs = { inherit user; };
+    specialArgs = { inherit user hyprland; };
     modules = [
-      hyprland.nixosModules.default
-      {programs.hyprland = {
-        enable = true;
-        nvidiaPatches = true;
-      };}
       ./laptop-blade
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
