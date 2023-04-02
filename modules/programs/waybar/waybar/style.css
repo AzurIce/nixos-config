@@ -49,13 +49,13 @@ tooltip label {
 #workspaces button {
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 8px;
+  padding-right: 12px;
   background: transparent;
   color: rgb(255, 255, 255);
 }
 #workspaces button.active {
-  border-bottom: 3px solid white;
+  /* border-bottom: 3px solid white; */
   background: #64727D;
   background-color: rgb(81, 132, 124);
 }
@@ -65,7 +65,7 @@ tooltip label {
   /* background-color: rgb(48, 89, 50); */
 }
 #window {
-    color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 tooltip {
   background: rgb(48, 45, 65);
