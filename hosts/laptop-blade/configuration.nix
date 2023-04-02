@@ -50,6 +50,9 @@
       wofi
       neofetch
       hyprpaper
+      mpv
+      imv
+      papirus-icon-theme
 
       python
       gcc
@@ -57,11 +60,13 @@
 
       gnome.nautilus
       dolphin
+      cinnamon.nemo
       ranger
+      btop
       wlogout
       hyprpaper
       chromium
-      microsoft-edge
+      microsoft-edge-dev
       obsidian
     ];
   };
