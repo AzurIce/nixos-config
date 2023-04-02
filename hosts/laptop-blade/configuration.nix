@@ -54,9 +54,11 @@
       imv
       papirus-icon-theme
 
+      rustup
       python
       gcc
       clang
+      nodePackages.pnpm
 
       gnome.nautilus
       dolphin
