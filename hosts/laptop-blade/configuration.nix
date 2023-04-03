@@ -43,7 +43,7 @@
   users.users.azurice = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "video" ];
     hashedPassword = "$6$po.VmTKXBpQj3xzb$ZjABnUQnWSboNO0TX2rlIySqTUvU.0TnSuopaq07u44WwHznIrIgLzCO.fkjVeFJ8PicTxbMiyKpOg.NisaPH/";
     packages = with pkgs; [
 #      kitty
@@ -69,9 +69,12 @@
       hyprpaper
       chromium
       microsoft-edge-dev
+      netease-cloud-music-gtk
       obsidian
     ];
   };
+
+  programs.light.enable = true;
 
   # fcitx5-rime
   i18n.inputMethod = {
