@@ -12,6 +12,9 @@
       ../../modules/desktop/hyprland
     ] ++ ( import ../../modules/programs );
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+#  servives.blueman.enable = true;
 
   ##### Booting #####
   # Use the systemd-boot EFI boot loader.
@@ -68,7 +71,7 @@
       wlogout
       hyprpaper
       chromium
-      microsoft-edge-dev
+      microsoft-edge
       netease-cloud-music-gtk
       obsidian
     ];
@@ -79,7 +82,10 @@
   # fcitx5-rime
   i18n.inputMethod = {
     enabled = "fcitx5";
-    fcitx5.addons = with pkgs; [fcitx5-rime];
+    fcitx5.addons = with pkgs; [
+        fcitx5-rime
+        fcitx5-gtk
+    ];
     fcitx5.enableRimeData = true;
   };
 

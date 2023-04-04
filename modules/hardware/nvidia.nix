@@ -9,12 +9,24 @@ let nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
   '';
 in
 {
+  # A command ine utility for Linux to save laptop battery power
+  # check:
+  #   https://wiki.archlinux.org/title/TLP
+  #   https://linrunner.de/tlp/index.html
+  services.tlp.enable = true;
+
+  # Automatic CPU speed & power optimizer
+  # check:
+  #   https://github.com/AdnanHodzic/auto-cpufreq
+  services.auto-cpufreq.enable = true;
+
   services.xserver.videoDrivers = [ "nvidia" ];
   boot.kernelParams = [
       "nvidia-drm.modeset=1"
   ];
   hardware.nvidia = {
     open = false; # Don't use open source kernel module
+    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     modesetting.enable = true;
     powerManagement.enable = true;
     prime = {
