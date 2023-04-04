@@ -167,6 +167,7 @@
       killall
       ntfs3g
       glib
+      glibc
       webkitgtk
     ];
   };
