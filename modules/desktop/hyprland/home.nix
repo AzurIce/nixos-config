@@ -1,7 +1,8 @@
 { pkgs, user, ... }:
 
 {
-  home.file.".config/hypr".source = ./hypr;
+  home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
+  home.file.".config/hypr/hyprpaper.conf".source = ./hypr/hyprpaper.conf;
 
   # Note: the sessionVariables will be only set when home-manager manager a shell
   # e.g. fish, bash

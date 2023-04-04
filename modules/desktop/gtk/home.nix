@@ -2,22 +2,21 @@
 
 {
   home.pointerCursor = {
-    package = pkgs.catppuccin-cursors;
-    name = "Catppuccin-Frappe-Dark";
+#    package = pkgs.bibata-cursors;
+#    name = "Bibata-Modern-Classic";
+    package = pkgs.catppuccin-cursors.frappeDark;
+    name = "Catppuccin-Frappe-Dark-Cursors";
     size = 16;
     gtk.enable = true;
   };
   gtk = {
     enable = true;
-#    theme = {
-#      name = "Catppuccin-Latte-Green";
-#      package = pkgs.catppuccin-latte-gtk;
-#    };
-    cursorTheme = {
-      name = "Catppuccin-Frappe-Dark";
+    theme = {
+      name = "Nordic";
+      package = pkgs.nordic;
     };
     iconTheme = {
-      name = "Papirus-Light";
+      name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
 

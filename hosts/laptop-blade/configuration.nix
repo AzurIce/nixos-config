@@ -56,7 +56,7 @@
       hyprpaper
       mpv
       imv
-      papirus-icon-theme
+#      papirus-icon-theme
       btop
 
       rustup
@@ -166,6 +166,8 @@
 
       killall
       ntfs3g
+      glib
+      webkitgtk
     ];
   };
 
