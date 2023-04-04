@@ -56,6 +56,7 @@
       mpv
       imv
       papirus-icon-theme
+      btop
 
       rustup
       python
