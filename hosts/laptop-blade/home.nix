@@ -5,6 +5,7 @@
       ../../modules/desktop/hyprland/home.nix
       ../../modules/desktop/gtk/home.nix
       ../../modules/programs/nvim/home.nix
+      ../../modules/programs/vscode/home.nix
       ../../modules/programs/obs-studio/home.nix
       ../../modules/programs/ranger/home.nix
 #      ../../modules/programs/eww/home.nix
