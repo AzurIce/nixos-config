@@ -66,6 +66,7 @@
       nodePackages.pnpm
       nodePackages.yarn
       nodejs
+      go
 
       libreoffice
       gnome.nautilus
