@@ -8,6 +8,7 @@
       extraConfig = {
         http.proxy = "http://127.0.0.1:7890";
         https.proxy = "https://127.0.0.1:7890";
+        safe.directory = "*";
       };
   };
 }

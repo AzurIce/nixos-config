@@ -64,7 +64,10 @@
       gcc
       clang
       nodePackages.pnpm
+      nodePackages.yarn
+      nodejs
 
+      libreoffice
       gnome.nautilus
       dolphin
       cinnamon.nemo
