@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, user, ... }:
+{ config, pkgs, lib, user, nur, ... }:
 
 {
   imports =
@@ -48,7 +48,7 @@
     shell = pkgs.fish;
     extraGroups = [ "wheel" "video" ];
     hashedPassword = "$6$po.VmTKXBpQj3xzb$ZjABnUQnWSboNO0TX2rlIySqTUvU.0TnSuopaq07u44WwHznIrIgLzCO.fkjVeFJ8PicTxbMiyKpOg.NisaPH/";
-    packages = with pkgs; [
+    packages = (with config.nur.repos; [ xddxdd.wechat-uos]) ++ (with pkgs; [
 #      kitty
       rofi-wayland
       wofi
@@ -68,6 +68,7 @@
       nodejs
       go
 
+      ghostwriter
       libreoffice
       gnome.nautilus
       dolphin
@@ -80,7 +81,7 @@
       microsoft-edge
       netease-cloud-music-gtk
       obsidian
-    ];
+    ]);
   };
 
   programs.light.enable = true;
@@ -92,7 +93,7 @@
         fcitx5-rime
         fcitx5-gtk
     ];
-    fcitx5.enableRimeData = true;
+    # fcitx5.enableRimeData = true;
   };
 
   ##### fonts #####
@@ -145,6 +146,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
+    "electron-19.0.7"
   ];
 
   ##### Networking #####

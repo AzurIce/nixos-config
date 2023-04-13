@@ -10,11 +10,12 @@
     hyprland.url = "github:hyprwm/Hyprland";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nur.url = "github:nix-community/NUR";
   };
-  outputs = { self, nixpkgs, hyprland, home-manager, nvim-config, ... }:
+  outputs = { self, nixpkgs, hyprland, home-manager, nvim-config, nur, ... }:
   {
     nixosConfigurations = import ./hosts {
-      inherit nixpkgs hyprland home-manager nvim-config;
+      inherit nixpkgs hyprland home-manager nvim-config nur;
     };
   };
 }
