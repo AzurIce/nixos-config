@@ -113,11 +113,11 @@
     "nvim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1680342477,
-        "narHash": "sha256-Hp1YSFwlZYpAHdFcz4XJVhKH+H6xHubsAqjforEJGtc=",
+        "lastModified": 1681281209,
+        "narHash": "sha256-6cJR4RR+wcQ4OhDauRtqgbHSrdgCqM1TrJPh+2ZDGqQ=",
         "owner": "AzurIce",
         "repo": "nvim",
-        "rev": "618caeb272ea6fe2c55c80ceb6586b1943f0d167",
+        "rev": "cdb7db24ca3e74418076fefb10db8d7c3c300cde",
         "type": "github"
       },
       "original": {
