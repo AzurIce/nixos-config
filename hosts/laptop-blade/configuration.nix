@@ -153,7 +153,7 @@
   networking = {
     hostName = "laptop-blade";
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-    proxy.default = "127.0.0.1:7890";
+    proxy.default = "http://127.0.0.1:7890";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 

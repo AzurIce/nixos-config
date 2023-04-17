@@ -21,10 +21,10 @@ fetchurl
 let
   clash-for-windows = {
     pname = "clash-for-windows";
-    version = "0.20.12";
+    version = "0.20.21";
     src = fetchurl {
-      url = "https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.12/Clash.for.Windows-0.20.12-x64-linux.tar.gz";
-      sha256 = "658d7d5a65b858a71f0aa949e77d36a2871538dec07b5a3608ee628d08016955";
+      url = "https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.21/Clash.for.Windows-0.20.21-x64-linux.tar.gz";
+      sha256 = "d5a85185f3bd04ed07d5ecffe495eab295b8758cf07b96aec1972c3e45009521";
     };
   };
   desktopItem = makeDesktopItem {
