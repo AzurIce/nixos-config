@@ -27,6 +27,9 @@
       system.nixos.tags = [ "external-display" ];
       hardware.nvidia.prime.offload.enable = lib.mkForce false;
       hardware.nvidia.powerManagement.enable = lib.mkForce false;
+      environment.variables = {
+        WLR_DRM_DEVICES = "/dev/dri/card0";
+      };
     };
   };
 
@@ -57,7 +60,6 @@
       mpv
       imv
 #      papirus-icon-theme
-      btop
 
       rustup
       python
@@ -74,6 +76,7 @@
       dolphin
       cinnamon.nemo
       ranger
+      # htop
       btop
       wlogout
       hyprpaper
@@ -147,6 +150,7 @@
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
     "electron-19.0.7"
+    "electron-21.4.0"
   ];
 
   ##### Networking #####

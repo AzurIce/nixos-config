@@ -12,8 +12,15 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Nordic";
-      package = pkgs.nordic;
+#      name = "Nordic";
+#      package = pkgs.nordic;
+      name = "Catppuccin-Latte-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "pink" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "latte";
+      };
     };
     iconTheme = {
       name = "Papirus-Dark";
