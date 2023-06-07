@@ -11,7 +11,7 @@
 #      ../../modules/programs/eww/home.nix
       #../../modules/programs/waybar/home.nix
       #../../modules/programs/firefox/home.nix
-      ../../modules/shell/fish/home.nix
+      #../../modules/shell/fish/home.nix
       ../../modules/programs/git/home.nix
       ../../modules/programs/kitty/home.nix
   ];
