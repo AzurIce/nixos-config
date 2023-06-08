@@ -2,14 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ hyprland, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
+#hyprland.nixosModules.default
       ./hardware-configuration.nix
       ../../modules/programs/fcitx5
+      ../../modules/desktop/hyprland
     ];
+
+# programs.hyprland.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -80,6 +84,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.light.enable = true;
   programs.fish.enable = true;
   users.users.azurice = {
     isNormalUser = true;
@@ -89,15 +94,33 @@
     packages = with pkgs; [
       firefox
       gnomeExtensions.kimpanel
+      joshuto
 
       clash-verge
       git
+
+      gcc
+      go
+      python3
 
       helix
       vscode
       marktext
     #  thunderbird
     ];
+  };
+
+  ##### fonts #####
+  fonts = {
+    fonts = with pkgs; [
+      jetbrains-mono
+      nerdfonts
+      noto-fonts-emoji
+      lxgw-wenkai
+      wqy_microhei
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ];
+    fontconfig.hinting.autohint = true;
   };
 
   # Allow unfree packages

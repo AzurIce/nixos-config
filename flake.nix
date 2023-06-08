@@ -1,5 +1,11 @@
 {
   inputs = {
+    dotfiles = {
+      type = "github";
+      owner = "AzurIce";
+      repo = ".dotfiles";
+      flake = false;
+    };
     nvim-config = {
       type = "github";
       owner = "AzurIce";
@@ -17,10 +23,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
   };
-  outputs = { self, nixpkgs, hyprland, home-manager, nvim-config, nur, nixos-wsl, ... }:
+  outputs = { self, nixpkgs, hyprland, home-manager, nvim-config, nur, nixos-wsl, dotfiles, ... }:
   {
     nixosConfigurations = import ./hosts {
-      inherit nixpkgs hyprland home-manager nvim-config nur nixos-wsl;
+      inherit nixpkgs dotfiles hyprland home-manager nvim-config nur nixos-wsl;
     };
   };
 }

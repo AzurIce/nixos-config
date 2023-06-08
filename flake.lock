@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685189113,
+        "narHash": "sha256-rhntFOgf9NZJgvhweYBoLvTO1FKT+/FTv7odVhI09Zk=",
+        "owner": "AzurIce",
+        "repo": ".dotfiles",
+        "rev": "8a80aaf807960a973b454600920d8dcd05252deb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AzurIce",
+        "repo": ".dotfiles",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -183,6 +199,7 @@
     },
     "root": {
       "inputs": {
+        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixos-wsl": "nixos-wsl",

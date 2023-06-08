@@ -25,7 +25,7 @@
       fsType = "vfat";
     };
 
-  fileSystems."/home/azurice/File" = {
+  fileSystems."/home/azurice/Files" = {
       device = "/dev/disk/by-uuid/2CA0167BA0164C28";
       fsType = "ntfs";
     };

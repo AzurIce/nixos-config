@@ -1,8 +1,9 @@
-{ pkgs, user, nvim-config, ... }:
+{ dotfiles, pkgs, user, nvim-config, ... }:
 
 {
   imports = [
-      #../../modules/desktop/hyprland/home.nix
+      ../../modules/desktop/hyprland/home.nix
+      #../../modules/desktop/hyprland-nvidia/home.nix
       #../../modules/desktop/gtk/home.nix
       ../../modules/programs/nvim/home.nix
       #../../modules/programs/vscode/home.nix
@@ -26,5 +27,10 @@
   home.stateVersion = "23.05";
 
   manual.manpages.enable = false;
+
+#  programs.eww = {
+#    enable = true;
+#    configDir = "${dotfiles}/eww";
+#  };
 }
 

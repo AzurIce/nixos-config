@@ -1,8 +1,8 @@
-{ nixpkgs, hyprland, home-manager, nvim-config, nur, nixos-wsl, ... }:
+{ nixpkgs, hyprland, home-manager, nvim-config, nur, nixos-wsl, dotfiles, ... }:
 
 let user = "azurice"; in {
   azurblade = import ./azurblade {
-      inherit user nixpkgs hyprland home-manager nvim-config nur;
+      inherit user nixpkgs hyprland home-manager nvim-config nur dotfiles;
   };
   laptop-blade = import ./laptop-blade {
       inherit user nixpkgs hyprland home-manager nvim-config nur;
