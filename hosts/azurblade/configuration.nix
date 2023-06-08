@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/programs/fcitx5
     ];
 
   # Bootloader.
@@ -87,7 +88,8 @@
     extraGroups = [ "networkmanager" "wheel" "video"  ];
     packages = with pkgs; [
       firefox
-      
+      gnomeExtensions.kimpanel
+
       clash-verge
       git
 
