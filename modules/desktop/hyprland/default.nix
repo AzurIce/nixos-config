@@ -10,7 +10,11 @@
   environment.systemPackages = with pkgs; [
     pamixer
     wl-clipboard
+
     eww-wayland
+    jq
+    socat
+
     rofi-wayland
     wlogout
     hyprpaper

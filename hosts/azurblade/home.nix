@@ -28,6 +28,8 @@
 
   manual.manpages.enable = false;
 
+  home.file.".config/joshuto".source = "${dotfiles}/joshuto";
+
 #  programs.eww = {
 #    enable = true;
 #    configDir = "${dotfiles}/eww";

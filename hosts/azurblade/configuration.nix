@@ -20,7 +20,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "azurblade"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   networking.proxy.default = "http://127.0.0.1:7890/";
@@ -52,7 +51,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+#  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -92,6 +91,7 @@
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "video"  ];
     packages = with pkgs; [
+      android-studio
       firefox
       gnomeExtensions.kimpanel
       joshuto
@@ -126,14 +126,21 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.substituters = [
-    "https://hyprland.cachix.org"
-    "https://mirrors.bfsu.edu.cn/nix-channels/store"
-  ];
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    settings.substituters = [
+      "https://hyprland.cachix.org"
+      "https://mirrors.bfsu.edu.cn/nix-channels/store"
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    killall
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
