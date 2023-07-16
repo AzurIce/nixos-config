@@ -15,12 +15,14 @@
       #../../modules/shell/fish/home.nix
       ../../modules/programs/git/home.nix
       ../../modules/programs/kitty/home.nix
+      ../../modules/programs/tmux/home.nix
   ];
 
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
   };
+
 
   programs.home-manager.enable = true;
 
