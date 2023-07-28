@@ -16,23 +16,36 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/366f51c2-3369-4456-9603-1c6d1ff8a5ec";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/425765b3-f9bf-4650-a7e5-a3e59ceaec5d";
+      fsType = "btrfs";
+      options = [ "subvol=root" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/425765b3-f9bf-4650-a7e5-a3e59ceaec5d";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/425765b3-f9bf-4650-a7e5-a3e59ceaec5d";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D745-9DEC";
+    { device = "/dev/disk/by-uuid/1510-27DE";
       fsType = "vfat";
     };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/e772cc10-8270-4591-824a-e54d63de3300"; }
+    ];
 
   fileSystems."/home/azurice/Files" = {
       device = "/dev/disk/by-uuid/2CA0167BA0164C28";
       fsType = "ntfs";
     };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/3d7597ce-e77d-4ad1-9b00-2afca231348e"; }
-    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

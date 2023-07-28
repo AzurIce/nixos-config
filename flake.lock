@@ -3,11 +3,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1689395026,
-        "narHash": "sha256-aHvju+tIvJnPSQb0iwIdCadEHBPwosCxOaWwFhKGDYo=",
+        "lastModified": 1690539121,
+        "narHash": "sha256-psqPnog2NU+p96tz1gS0ORXElctBlsNCaUzO6zPre+w=",
         "owner": "AzurIce",
         "repo": ".dotfiles",
-        "rev": "42692c17966006298fe19af66096db969e97a2d9",
+        "rev": "f914eccc649a8b3b783e2060b17115bd78673a39",
         "type": "github"
       },
       "original": {
