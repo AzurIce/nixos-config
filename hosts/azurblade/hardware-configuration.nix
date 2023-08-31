@@ -16,30 +16,30 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/425765b3-f9bf-4650-a7e5-a3e59ceaec5d";
+    { device = "/dev/disk/by-uuid/60763a37-41e9-420e-b7b8-7a2771174cd5";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/425765b3-f9bf-4650-a7e5-a3e59ceaec5d";
+    { device = "/dev/disk/by-uuid/60763a37-41e9-420e-b7b8-7a2771174cd5";
       fsType = "btrfs";
       options = [ "subvol=home" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/425765b3-f9bf-4650-a7e5-a3e59ceaec5d";
+    { device = "/dev/disk/by-uuid/60763a37-41e9-420e-b7b8-7a2771174cd5";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1510-27DE";
+    { device = "/dev/disk/by-uuid/7854-92D2";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/e772cc10-8270-4591-824a-e54d63de3300"; }
+    [ { device = "/dev/disk/by-uuid/95e29e1b-8b6b-47c3-9565-f6447b86f1ba"; }
     ];
 
   fileSystems."/home/azurice/Files" = {
