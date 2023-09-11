@@ -102,6 +102,11 @@
       gcc
       go
       python3
+      cargo
+      rustc
+
+      libxkbcommon
+      libGL
 
       helix
       vscode
@@ -112,7 +117,7 @@
 
   ##### fonts #####
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       jetbrains-mono
       nerdfonts
       noto-fonts-emoji

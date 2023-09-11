@@ -14,6 +14,7 @@
     eww-wayland
     jq
     socat
+    xwayland
 
     rofi-wayland
     wlogout
