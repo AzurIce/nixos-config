@@ -1,11 +1,15 @@
-{ nixpkgs, hyprland, home-manager, nvim-config, nur, nixos-wsl, ... }:
+inputs@{ nixpkgs, nixpkgs-darwin, nix-darwin, nixos-wsl, hyprland, home-manager, nvim-config, nur, ... }:
 
 let user = "azurice"; in {
-  laptop-blade = import ./laptop-blade {
-      inherit user nixpkgs hyprland home-manager nvim-config nur;
+  nixosConfigurations.laptop-blade = import ./laptop-blade {
+    inherit user nixpkgs hyprland home-manager nvim-config nur;
   };
-  wsl = import ./wsl {
-      inherit user nixpkgs home-manager nvim-config nur nixos-wsl;
+  nixosConfigurations.wsl = import ./wsl {
+    inherit user nixpkgs home-manager nvim-config nur nixos-wsl;
+  };
+  darwinConfigurations.AzurMac = import ./AzurMac {
+    inherit user home-manager nvim-config nix-darwin;
+    nixpkgs = nixpkgs-darwin;
   };
 }
 
