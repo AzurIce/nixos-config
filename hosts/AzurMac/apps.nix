@@ -1,5 +1,7 @@
 { pkgs, ... }: {
 
+  imports = [ ../../modules/programs/typora ];
+
   ##########################################################################
   #
   #  NOTE: Your can find all available options in:
@@ -68,7 +70,6 @@
       "pandoc"
       "pnpm"
       "python"
-      "rustup-init"
       "sqlite"
       "typst"
       # "aria2"  # download tool

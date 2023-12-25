@@ -4,6 +4,7 @@
   imports = [
     ../../modules/programs/git/home.nix
     ../../modules/programs/nvim/home.nix
+    ../../modules/programs/typora/home.nix
     # ../../modules/programs/obs-studio/home.nix
   ];
 
@@ -14,6 +15,7 @@
       btop
     ];
   };
+
 
   programs.alacritty = {
     enable = true;
@@ -35,6 +37,12 @@
         # "zsh-autosuggestions"
       ];
     };
+  };
+
+  programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
   };
 
   # programs.starship = {

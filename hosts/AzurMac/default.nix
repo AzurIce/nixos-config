@@ -9,12 +9,12 @@ nix-darwin.lib.darwinSystem {
     ./apps.nix
     ./host-users.nix
     home-manager.darwinModules.home-manager
-    {
+    (let system = "aarch64-darwin"; in {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = { inherit user nvim-config; };
+      home-manager.extraSpecialArgs = { inherit user nvim-config system; };
 
       home-manager.users.${user} = import ./home.nix;
-    }
+    })
   ];
 }
