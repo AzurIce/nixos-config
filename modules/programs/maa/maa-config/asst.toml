@@ -1,0 +1,18 @@
+# user_resource = true
+# resources = ["platform_diff/iOS"]
+
+[connection]
+type = "ADB"
+adb_path = "adb"
+device = "192.168.43.1:8888"
+config = "General"
+
+[static_options]
+cpu_ocr = true
+# gpu_ocr = 1
+
+[instance_options]
+touch_mode = "ADB"
+deployment_with_pause = false
+adb_lite_enabled = false
+kill_adb_on_exit = false

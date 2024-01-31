@@ -5,6 +5,7 @@
     ../../modules/programs/git/home.nix
     ../../modules/programs/nvim/home.nix
     ../../modules/programs/typora/home.nix
+    ../../modules/programs/maa/home.nix
     # ../../modules/programs/obs-studio/home.nix
   ];
 

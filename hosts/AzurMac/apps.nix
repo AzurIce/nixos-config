@@ -22,6 +22,9 @@
     alacritty
     nixpkgs-fmt
     rnix-lsp
+    android-tools
+
+    #  cargo
   ];
 
   environment.variables = {

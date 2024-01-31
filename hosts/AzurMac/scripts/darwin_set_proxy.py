@@ -18,13 +18,21 @@ HTTP_PROXY = "http://127.0.0.1:7890"
 
 pl = plistlib.loads(NIX_DAEMON_PLIST.read_bytes())
 
-# set http proxy
-pl["EnvironmentVariables"]["HTTP_PROXY"] = HTTP_PROXY
-pl["EnvironmentVariables"]["HTTPS_PROXY"] = HTTP_PROXY
-
 # remove http proxy
-# pl["EnvironmentVariables"].pop("HTTP_PROXY", None)
-# pl["EnvironmentVariables"].pop("HTTPS_PROXY", None)
+pl["EnvironmentVariables"].pop("HTTP_PROXY", None)
+pl["EnvironmentVariables"].pop("HTTPS_PROXY", None)
+pl["EnvironmentVariables"].pop("ALL_PROXY", None)
+pl["EnvironmentVariables"].pop("http_proxy", None)
+pl["EnvironmentVariables"].pop("https_proxy", None)
+pl["EnvironmentVariables"].pop("all_proxy", None)
+
+# set http proxy
+# pl["EnvironmentVariables"]["HTTP_PROXY"] = HTTP_PROXY
+# pl["EnvironmentVariables"]["HTTPS_PROXY"] = HTTP_PROXY
+#pl["EnvironmentVariables"]["ALL_PROXY"] = "sock5://localhost:7890"
+pl["EnvironmentVariables"]["http_proxy"] = HTTP_PROXY
+pl["EnvironmentVariables"]["https_proxy"] = HTTP_PROXY
+pl["EnvironmentVariables"]["all_proxy"] = "sock5://localhost:7890"
 
 os.chmod(NIX_DAEMON_PLIST, 0o644)
 NIX_DAEMON_PLIST.write_bytes(plistlib.dumps(pl))

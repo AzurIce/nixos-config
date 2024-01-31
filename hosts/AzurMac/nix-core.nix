@@ -12,6 +12,7 @@
       "https://mirrors.ustc.edu.cn/nix-channels/store"
     ];
     experimental-features = [ "nix-command" "flakes" ];
+#experimental-features = [ "nix-command" "flakes" "configurable-impure-env"];
   };
 
   # Allow unfree packages
@@ -20,7 +21,8 @@
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-  nix.package = pkgs.nix;
+  # nix.package = pkgs.nix;
+  nix.package = pkgs.nixUnstable;
   programs.nix-index.enable = true;
 
   nix.gc = {
