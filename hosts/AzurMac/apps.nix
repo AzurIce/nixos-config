@@ -17,13 +17,36 @@
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
     git
+    vim
     neovim
     helix
     alacritty
     nixpkgs-fmt
-    rnix-lsp
+    # rnix-lsp
     android-tools
+    # jdk8
+    # oraclejdk8
+    btop
 
+    just
+    nushell
+    ffmpeg
+    fzf
+    joshuto
+
+    deno
+    bun
+    nodejs_21
+    nodePackages_latest.pnpm
+    typst
+    sqlite
+    pandoc
+    python3
+    obsidian
+    iterm2
+    raycast
+    vscode
+    warp-terminal
     #  cargo
   ];
 
@@ -34,8 +57,9 @@
   };
 
   programs.zsh.enable = true;
-  environment.shells = [
-    pkgs.zsh
+  environment.shells = with pkgs; [
+    zsh
+    nushell
   ];
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
@@ -52,7 +76,6 @@
     };
 
     taps = [
-      "homebrew/cask"
       "homebrew/cask-fonts"
       "homebrew/services"
       "homebrew/cask-versions"
@@ -60,35 +83,14 @@
 
     # `brew install`
     # TODO Feel free to add your favorite apps here.
-    brews = [
-      "btop"
-      "bun"
-      "deno"
-      "ffmpeg"
-      "fzf"
-      "go"
-      "joshuto"
-      "node"
-      "openjdk"
-      "pandoc"
-      "pnpm"
-      "python"
-      "sqlite"
-      "typst"
-      # "aria2"  # download tool
-    ];
+    brews = [];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
-      "warp"
-      "github"
-      "iterm2"
-      "obsidian"
       "todesk"
+      "github"
       "karabiner-elements"
-      "raycast"
-      "visual-studio-code"
     ];
   };
 }

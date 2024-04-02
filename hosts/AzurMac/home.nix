@@ -6,6 +6,7 @@
     ../../modules/programs/nvim/home.nix
     ../../modules/programs/typora/home.nix
     ../../modules/programs/maa/home.nix
+    ../../modules/programs/alacritty.nix
     # ../../modules/programs/obs-studio/home.nix
   ];
 
@@ -17,14 +18,9 @@
     ];
   };
 
-
-  programs.alacritty = {
-    enable = true;
-  };
-
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
@@ -35,6 +31,7 @@
         # "colored-man-page"
         "colorize"
         "copypath"
+        "direnv"
         # "zsh-autosuggestions"
       ];
     };
@@ -57,6 +54,6 @@
   #   };
   # };
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 }
