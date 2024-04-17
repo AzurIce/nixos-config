@@ -1,4 +1,4 @@
-{ pkgs, user, system, ... }:
+inputs@{ pkgs, user, system, ... }:
 
 {
   imports =

@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+inputs@{ pkgs, user, ... }:
 
 {
   programs.alacritty = {
@@ -6,9 +6,12 @@
     settings = {
       font = {
         size = 16.0;
-        normal.family = "JetBrainsMono Nerd Font";
-        window.opacity = 0.8;
+        normal = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Regular";
+        };
       };
+      window.opacity = 0.8;
     };
   };
 }

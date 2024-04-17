@@ -1,6 +1,8 @@
 { pkgs, ... }: {
 
-  imports = [ ../../modules/programs/typora ];
+  imports = [
+    ../../modules/programs/typora
+  ];
 
   ##########################################################################
   #
@@ -32,7 +34,8 @@
     nushell
     ffmpeg
     fzf
-    joshuto
+    # joshuto
+    yazi
 
     deno
     bun
@@ -47,7 +50,16 @@
     raycast
     vscode
     warp-terminal
-    #  cargo
+    cargo
+    lua51Packages.luarocks
+    lua51Packages.lua
+
+    localsend
+  ];
+
+  fonts.fontDir.enable = true;
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   environment.variables = {
@@ -83,14 +95,19 @@
 
     # `brew install`
     # TODO Feel free to add your favorite apps here.
-    brews = [];
+    brews = [
+	"sing-box"
+    ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
+      "squirrel"
+      "qq"
       "todesk"
       "github"
       "karabiner-elements"
+      "sfm"
     ];
   };
 }

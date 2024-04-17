@@ -1,12 +1,14 @@
-{ user, config, pkgs, ... }:
+inputs@{ user, config, pkgs, ... }:
 
 {
   imports = [
-    ../../modules/programs/git/home.nix
-    ../../modules/programs/nvim/home.nix
+    ../../modules/programs/git.nix
+    ../../modules/programs/nvim.nix
     ../../modules/programs/typora/home.nix
-    ../../modules/programs/maa/home.nix
+    #../../modules/programs/maa/home.nix
     ../../modules/programs/alacritty.nix
+    ../../modules/programs/kitty.nix
+    ../../modules/programs/rime.nix
     # ../../modules/programs/obs-studio/home.nix
   ];
 

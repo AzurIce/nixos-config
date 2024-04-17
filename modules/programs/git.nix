@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+inputs@{ pkgs, user, ... }:
 
 {
   programs.git = {

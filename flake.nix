@@ -9,6 +9,12 @@
   };
 
   inputs = {
+    dotfiles = {
+      type = "github";
+      owner = "AzurIce";
+      repo = ".dotfiles";
+      flake = false;
+    };
     nvim-config = {
       type = "github";
       owner = "AzurIce";
@@ -37,6 +43,8 @@
     };
     nur.url = "github:nix-community/NUR";
     hyprland.url = "github:hyprwm/Hyprland";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    joshuto.url = "github:kamiyaa/joshuto";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
