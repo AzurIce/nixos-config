@@ -45,6 +45,12 @@
     hyprland.url = "github:hyprwm/Hyprland";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     joshuto.url = "github:kamiyaa/joshuto";
+
+    agenix.url = "github:ryantm/agenix";
+    # optional, not necessary for the module
+    #inputs.agenix.inputs.nixpkgs.follows = "nixpkgs";
+    # optionally choose not to download darwin deps (saves some resources on Linux)
+    #inputs.agenix.inputs.darwin.follows = "";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:

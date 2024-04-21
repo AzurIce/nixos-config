@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, system, agenix, ... }: {
 
   imports = [
     ../../modules/programs/typora
@@ -18,6 +18,8 @@
   #
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
+    agenix.packages.${system}.default
+  
     git
     # vim
     neovim
@@ -55,6 +57,7 @@
     lua51Packages.lua
 
     localsend
+    sing-box
   ];
 
   fonts.fontDir.enable = true;
@@ -96,7 +99,7 @@
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
-	"sing-box"
+	    # "sing-box"
     ];
 
     # `brew install --cask`
@@ -107,7 +110,7 @@
       "todesk"
       "github"
       "karabiner-elements"
-      "sfm"
+      # "sfm"
     ];
   };
 }

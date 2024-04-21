@@ -23,6 +23,9 @@ inputs@{ user, config, pkgs, ... }:
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
+    initExtra = ''
+      export PATH=$PATH:/Users/azurice/.cargo/bin
+    '';
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
