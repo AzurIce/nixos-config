@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ hyprland, config, pkgs, ... }:
+inputs@{ hyprland, config, pkgs, ... }:
 
 {
   imports =
@@ -55,8 +55,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
   };
 
   # Enable CUPS to print documents.
@@ -79,6 +81,11 @@
     #media-session.enable = true;
   };
 
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "Hyprland";
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -96,7 +103,7 @@
       gnomeExtensions.kimpanel
       joshuto
 
-      clash-verge
+      clash-nyanpasu
       git
 
       gcc
@@ -110,7 +117,6 @@
 
       helix
       vscode
-      marktext
     #  thunderbird
     ];
   };

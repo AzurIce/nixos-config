@@ -1,0 +1,4 @@
+[[tasks]]
+type = "StartUp" # maa任务的类型
+params = { client_type = "Official", start_game_enabled = true } # maa任务的参数
+

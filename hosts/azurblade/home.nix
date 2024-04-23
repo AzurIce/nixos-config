@@ -1,11 +1,11 @@
-{ dotfiles, pkgs, user, nvim-config, ... }:
+inputs@{ dotfiles, pkgs, user, nvim-config, ... }:
 
 {
   imports = [
       ../../modules/desktop/hyprland/home.nix
       #../../modules/desktop/hyprland-nvidia/home.nix
       #../../modules/desktop/gtk/home.nix
-      ../../modules/programs/nvim/home.nix
+      ../../modules/programs/nvim.nix
       #../../modules/programs/vscode/home.nix
       #../../modules/programs/obs-studio/home.nix
       #../../modules/programs/ranger/home.nix
@@ -13,8 +13,8 @@
       #../../modules/programs/waybar/home.nix
       #../../modules/programs/firefox/home.nix
       #../../modules/shell/fish/home.nix
-      ../../modules/programs/git/home.nix
-      ../../modules/programs/kitty/home.nix
+      ../../modules/programs/git.nix
+      ../../modules/programs/kitty.nix
       ../../modules/programs/tmux/home.nix
   ];
 

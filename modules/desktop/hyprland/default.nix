@@ -11,7 +11,7 @@
     pamixer
     wl-clipboard
 
-    eww-wayland
+    eww
     jq
     socat
     xwayland

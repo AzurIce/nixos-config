@@ -1,4 +1,4 @@
-{ user, nixpkgs, hyprland, home-manager, nvim-config, nur, ... }:
+inputs@{ user, nixpkgs, hyprland, home-manager, nvim-config, nur, ... }:
 
 nixpkgs.lib.nixosSystem {
   system = "x86_64-linux";
