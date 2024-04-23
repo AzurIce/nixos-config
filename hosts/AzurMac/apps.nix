@@ -1,4 +1,4 @@
-{ pkgs, system, agenix, ... }: {
+{ pkgs, system, ... }: {
 
   imports = [
     ../../modules/programs/typora
@@ -18,8 +18,6 @@
   #
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
-    agenix.packages.${system}.default
-  
     git
     # vim
     neovim
@@ -31,6 +29,7 @@
     # jdk8
     # oraclejdk8
     btop
+    sops
 
     just
     nushell

@@ -1,10 +1,9 @@
-inputs@{ nixpkgs, user, home-manager, nix-darwin, nvim-config, agenix, ... }:
+inputs@{ nixpkgs, user, home-manager, nix-darwin, nvim-config, ... }:
 
 nix-darwin.lib.darwinSystem rec {
   system = "aarch64-darwin";
   specialArgs = inputs // { inherit system; };
   modules = [
-    agenix.nixosModules.default
     ./nix-core.nix
     ./system.nix
     ./apps.nix

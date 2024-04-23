@@ -2,6 +2,7 @@ inputs@{ user, config, pkgs, ... }:
 
 {
   imports = [
+    inputs.sops-nix.homeManagerModules.sops
     ../../modules/programs/git.nix
     ../../modules/programs/nvim.nix
     ../../modules/programs/typora/home.nix
@@ -11,6 +12,20 @@ inputs@{ user, config, pkgs, ... }:
     ../../modules/programs/rime.nix
     # ../../modules/programs/obs-studio/home.nix
   ];
+
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    age = {
+      # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25518_key" ];
+      sshKeyPaths = [ ];
+      keyFile = "/Users/${user}/Library/Application Support/sops/age/keys.txt";
+      generateKey = true;
+    };
+    secrets.SSH_PVKEY = {
+      mode = "0600";
+      path = "/Users/${user}/.ssh/id_ed25519";
+    };
+  };
 
   home = {
     username = "${user}";

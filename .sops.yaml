@@ -1,0 +1,8 @@
+
+keys:
+  - &azur_mac age16l4pfv403grvrmxkz8j5mujfsfyuf7f3ltxwz7qx77zlmvnk6qdsgta3sq
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+        - *azur_mac
