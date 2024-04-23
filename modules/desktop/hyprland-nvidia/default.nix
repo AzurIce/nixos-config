@@ -5,20 +5,12 @@
 
   programs.hyprland = {
     enable = true;
+    nvidiaPatches = true;
   };
 
   environment.systemPackages = with pkgs; [
     pamixer
     wl-clipboard
-
-    eww
-    jq
-    socat
-    xwayland
-
-    rofi-wayland
-    wlogout
-    hyprpaper
   ];
 
   services.pipewire = {

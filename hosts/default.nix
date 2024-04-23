@@ -4,6 +4,9 @@ let user = "azurice"; in {
   nixosConfigurations.laptop-blade = import ./laptop-blade (inputs // {
     inherit user;
   });
+  nixosConfigurations.azurblade = import ./azurblade (inputs // {
+    inherit user;
+  });
   nixosConfigurations.wsl = import ./wsl (inputs // {
     inherit user;
   });
