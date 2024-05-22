@@ -22,7 +22,7 @@
   services.nix-daemon.enable = true;
 
   # nix.package = pkgs.nix;
-  nix.package = pkgs.nixUnstable;
+  nix.package = pkgs.nixVersions.git;
   programs.nix-index.enable = true;
 
   nix.gc = {

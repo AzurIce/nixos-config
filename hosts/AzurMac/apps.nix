@@ -40,7 +40,7 @@
 
     deno
     bun
-    nodejs_21
+    nodejs_22
     nodePackages_latest.pnpm
     typst
     sqlite
@@ -54,10 +54,23 @@
     cargo
     lua51Packages.luarocks
     lua51Packages.lua
+    jdk21
 
     localsend
     sing-box
+
+    consul
+    traefik
   ];
+
+  # services.postgresql = {
+  #   enable = true;
+  #   ensureDatabases = [ "mydatabase" ];
+  #   authentication = pkgs.lib.mkOverride 10 ''
+  #     #type database  DBuser  auth-method
+  #     local all       all     trust
+  #   '';
+  # };
 
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
