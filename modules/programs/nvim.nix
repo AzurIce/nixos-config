@@ -42,6 +42,8 @@ inputs@{ pkgs, user, nvim-config, ... }:
 #    '';
   };
 
+  users.users.${user}.packages = with pkgs; [ deno ];
+
   # home.file.".config/nvim/rocks.toml".source = "${nvim-config}/rocks.toml";
   home.file.".config/nvim".source = nvim-config;
 }

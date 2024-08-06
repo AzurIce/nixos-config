@@ -1,18 +1,7 @@
-inputs@{ nixpkgs-darwin, ... }:
+inputs:
 
 let user = "azurice"; in {
-  nixosConfigurations.laptop-blade = import ./laptop-blade (inputs // {
+  nixosConfigurations.azurmac-nixos = import ./azurmac-nixos (inputs // {
     inherit user;
-  });
-  nixosConfigurations.azurblade = import ./azurblade (inputs // {
-    inherit user;
-  });
-  nixosConfigurations.wsl = import ./wsl (inputs // {
-    inherit user;
-  });
-  darwinConfigurations.AzurMac = import ./AzurMac (inputs // {
-    inherit user;
-    nixpkgs = nixpkgs-darwin;
   });
 }
-
