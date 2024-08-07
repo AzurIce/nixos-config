@@ -1,8 +1,56 @@
-{ dotfiles, pkgs, user, ... }:
+inputs@{ dotfiles, pkgs, user, ... }:
 
 {
-  home.file.".config/eww".source = "${dotfiles}/eww";
-  home.file.".config/hypr".source = "${dotfiles}/hypr";
+  wayland.windowManager.hyprland.settings = {
+    "$mod" = "SUPER";
+    bind =
+      [
+        "$mod, F, exec, firefox"
+        ", Print, exec, grimblast copy area"
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+        builtins.concatLists (builtins.genList (
+            x: let
+              ws = let
+                c = (x + 1) / 10;
+              in
+                builtins.toString (x + 1 - (c * 10));
+            in [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            ]
+          )
+          10)
+      ) ++ [
+        "$mod, H, movefocus, l"
+        "$mod, L, movefocus, r"
+        "$mod, K, movefocus, u"
+        "$mod, J, movefocus, d"
+      ] ++ [
+        "$mod, mouse_down, workspace, e+1"
+        "$mod, mouse_up, workspace, e-1"
+      ] ++ [
+        "$mod, Return, exec, kitty"
+        "$mod, Escape, exec, wlogout"
+        "$mod, E, exec, nautilus"
+        "$mod, Q, killactive"
+        "$mod, M, exit"
+        "$mod, V, togglefloating"
+        "$mod, F, fullscreen"
+      ];
+    bindm =
+      [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
+    exec-once = [
+      "eww open topbar & hyprpaper & fcitx5 & clash-verge & syncthingtray --wait"
+    ];
+  };
+  #home.file.".config/eww".source = "${dotfiles}/eww";
+  #home.file.".config/hypr".source = "${dotfiles}/hypr";
 #  home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
 #  home.file.".config/hypr/hyprpaper.conf".source = ./hypr/hyprpaper.conf;
 #
