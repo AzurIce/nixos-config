@@ -1,5 +1,11 @@
 (deflisten windows_title :initial "..." "sh ~/.config/eww/scripts/get-window-title")
 
 (defwidget title []
-    (label :text "${windows_title}")
+  (box :class "title"
+    (label :text {
+      strlength(windows_title) > 30
+      ? "${substring(windows_title, 0, 30)}..."
+      : "${windows_title}"
+    })
+  )
 )
