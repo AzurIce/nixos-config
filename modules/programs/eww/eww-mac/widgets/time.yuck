@@ -1,0 +1,8 @@
+(defpoll time :interval "1s"
+              :initial "initial-value"  ; optional, defaults to poll at startup
+              :run-while time-visible   ; optional, defaults to 'true'
+  `date +%H:%M:%S`)
+
+(defwidget time []
+    (label :text "${time}")
+)

@@ -1,0 +1,3 @@
+link:
+  rm -rf ~/.config/eww
+  ln -s ~/.dotfiles/eww ~/.config/eww

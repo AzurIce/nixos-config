@@ -1,0 +1,8 @@
+(defpoll network_ssid :interval "5s" :initial "D" `nmcli c | grep wlo1 | awk '{print ($1)}'`)
+(defpoll network_status :interval "5s" :initial "" `nmcli g | grep -oE "disconnected"`)
+(defwidget network []
+    (box :class "wifi"
+        (label :text "${strlength(network_status) == 0 ? "${network_ssid} " : "Disconnected"}")
+    )
+)
+

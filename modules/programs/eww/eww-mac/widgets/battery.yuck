@@ -1,0 +1,10 @@
+(defpoll battery :interval "5s" "sh ~/.config/eww/scripts/battery --bat")
+(defpoll battery_status :interval "15s" "sh ~/.config/eww/scripts/battery --bat-st")
+
+(defwidget battery []
+	(box :class "battery"
+		:orientation "h"
+		:tooltip "Battery: ${battery}%"
+        (label :text "${battery}% ${battery_status != "Discharging" ? "󰚥" : battery >= 90 ? "" : battery >= 70 ? "" : battery >= 50 ? "" : battery >= 20 ? "" : ""}")
+	)
+)

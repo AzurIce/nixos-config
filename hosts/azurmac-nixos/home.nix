@@ -2,14 +2,16 @@ inputs@{ user, ... }:
 
 {
   imports = [
-	  ../../modules/programs/git.nix
-	  ../../modules/programs/nvim.nix
-	  ../../modules/desktop/hyprland/home.nix
+    ../../modules/desktop/hyprland/home.nix
+    ../../modules/programs/eww/home.nix
+
+    ../../modules/programs/git.nix
+    ../../modules/programs/nvim.nix
     ../../modules/fonts.nix
   ];
 
   home = {
-	  username = "${user}";
+      username = "${user}";
     homeDirectory = "/home/${user}";
   };
 
