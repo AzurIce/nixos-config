@@ -50,7 +50,9 @@ inputs@{ pkgs, user, ... }:
     # clang
     gcc
 
+    # for install deps
     unzip
+    tree-sitter
   ];
 
   # home.file.".config/nvim/rocks.toml".source = "${nvim-config}/rocks.toml";
