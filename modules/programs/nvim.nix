@@ -1,7 +1,8 @@
-inputs@{ pkgs, user, nvim-config, ... }:
+inputs@{ pkgs, user, ... }:
 
 {
   programs.neovim = {
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
     enable = true;
     defaultEditor = true; # Set env EDITOR = nvim
     viAlias = true;
@@ -42,8 +43,14 @@ inputs@{ pkgs, user, nvim-config, ... }:
 #    '';
   };
 
-  users.users.${user}.packages = with pkgs; [ deno ];
+  home.packages = with pkgs; [
+    # for installing Rocks.nvim
+    lua51Packages.luarocks
+    cargo
+    # clang
+    gcc
+  ];
 
   # home.file.".config/nvim/rocks.toml".source = "${nvim-config}/rocks.toml";
-  home.file.".config/nvim".source = nvim-config;
+  # home.file.".config/nvim".source = nvim-config;
 }

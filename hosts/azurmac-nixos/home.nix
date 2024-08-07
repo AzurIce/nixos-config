@@ -3,6 +3,7 @@ inputs@{ user, ... }:
 {
   imports = [
 	  ../../modules/programs/git.nix
+	  ../../modules/programs/nvim.nix
 	  ../../modules/desktop/hyprland/home.nix
     ../../modules/fonts.nix
   ];

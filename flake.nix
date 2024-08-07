@@ -8,6 +8,7 @@
     };
 
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # apple-silicon support
     nixos-apple-silicon.url = "github:tpwrules/nixos-apple-silicon";

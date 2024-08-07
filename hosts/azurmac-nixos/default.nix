@@ -9,7 +9,7 @@ nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = { inherit user inputs; };
+      home-manager.extraSpecialArgs = inputs;
       home-manager.users.${user}= import ./home.nix;
 
       # Optionally, use home-manager.extraSpecialArgs to pass
