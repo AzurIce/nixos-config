@@ -49,6 +49,8 @@ inputs@{ pkgs, user, ... }:
     cargo
     # clang
     gcc
+
+    unzip
   ];
 
   # home.file.".config/nvim/rocks.toml".source = "${nvim-config}/rocks.toml";
