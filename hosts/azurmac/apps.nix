@@ -86,6 +86,47 @@
   services.yabai = {
     enable = true;
     enableScriptingAddition = true;
+    # config = {
+    #   layout = "bsp";
+    #   window_gap = 20;
+    # };
+    # extraConfig = ''
+    #   yabai -m rule --add app='System Preferences' manage=off
+    # '';
+  };
+
+  services.skhd = {
+    enable = true;
+    skhdConfig = ''
+      alt - return : alacritty
+      alt - q : yabai -m window --close
+
+      alt - 1 : yabai -m space --focus 1
+      alt - 2 : yabai -m space --focus 2
+      alt - 3 : yabai -m space --focus 3
+      alt - 4 : yabai -m space --focus 4
+      alt - 5 : yabai -m space --focus 5
+
+      shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+      shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+      shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+      shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+
+      alt - h : yabai -m window --focus west
+      alt - j : yabai -m window --focus south
+      alt - k : yabai -m window --focus north
+      alt - l : yabai -m window --focus east
+
+      alt + shift - h : yabai -m window west --resize right:-20:0 2> /dev/null || /opt/homebrew/bin/yabai -m window --resize right:-20:0
+      alt + shift - l : yabai -m window east --resize left:20:0 2> /dev/null || /opt/homebrew/bin/yabai -m window --resize left:20:0
+
+      alt + shift - space : yabai -m window --toggle float
+      alt + shift - t : yabai -m window --toggle topmost
+
+      alt - f : yabai -m space --layout bsp
+      alt - m : yabai -m space --layout stack
+
+    '';
   };
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
@@ -98,7 +139,7 @@
     onActivation = {
       autoUpdate = false;
       # 'zap': uninstalls all formulae(and related files) not listed here.
-      # cleanup = "zap";
+      cleanup = "zap";
     };
 
     taps = [
@@ -117,7 +158,7 @@
       "qq"
       #"todesk"
       "github"
-      "karabiner-elements"
+      # "karabiner-elements"
       # "sfm"
     ];
   };

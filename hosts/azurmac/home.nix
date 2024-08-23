@@ -21,6 +21,17 @@ inputs@{ user, config, pkgs, ... }:
     ];
   };
 
+  home.file.".yabairc".text = ''
+    # layout
+    yabai -m config layout bsp
+
+    # paddings and gaps
+    yabai -m config window_gap 8
+
+    # rules
+    yabai -m rule --add app="^Karabiner-Elements$" manage=off
+  '';
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -60,6 +71,6 @@ inputs@{ user, config, pkgs, ... }:
   #   };
   # };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 }
