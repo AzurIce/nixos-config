@@ -12,7 +12,10 @@ nix-darwin.lib.darwinSystem rec {
     (let system = "aarch64-darwin"; in {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = inputs // { inherit system; };
+      home-manager.extraSpecialArgs = inputs // {
+        inherit system;
+        azurmac = true;
+      };
 
       home-manager.users.${user} = import ./home.nix;
     })

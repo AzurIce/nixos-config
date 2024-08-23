@@ -1,4 +1,4 @@
-inputs@{ pkgs, user, ... }:
+inputs@{ pkgs, user, azurmac, ... }:
 
 {
   programs.git = {
@@ -10,7 +10,10 @@ inputs@{ pkgs, user, ... }:
       https.proxy = "https://127.0.0.1:7890";
       safe.directory = "*";
       credential = {
-        credentialStore = "secretservice";
+        credentialStore = if azurmac then
+          "keychain"
+        else
+          "secretservice";
         helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
       };
     };

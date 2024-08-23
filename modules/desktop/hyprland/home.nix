@@ -1,4 +1,4 @@
-inputs@{ dotfiles, pkgs, user, mac, ... }:
+inputs@{ dotfiles, pkgs, user, azurmac-nixos, ... }:
 
 {
   home.sessionVariables.WLR_DRM_DEVICES = "/dev/dri/card0";
@@ -137,12 +137,12 @@ inputs@{ dotfiles, pkgs, user, mac, ... }:
       "float, class:clash-verge"
     ];
   } // {
-    "$mod" = if mac then
+    "$mod" = if azurmac-nixos then
       "ALT"
     else
       "SUPER";
 
-    "$alt" = if mac then
+    "$alt" = if azurmac-nixos then
       "SUPER"
     else
       "ALT";

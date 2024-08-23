@@ -10,7 +10,7 @@ nixpkgs.lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = inputs // {
-        mac = true;
+        azurmac-nixos = true;
       };
       home-manager.users.${user}= import ./home.nix;
 
