@@ -28,16 +28,13 @@
     # jdk8
     # oraclejdk8
     btop
-    sops
 
     just
     nushell
     ffmpeg
     fzf
-    # joshuto
     yazi
 
-    deno
     bun
     nodejs_22
     nodePackages_latest.pnpm
@@ -49,7 +46,6 @@
     iterm2
     raycast
     vscode
-    warp-terminal
     cargo
     lua51Packages.luarocks
     lua51Packages.lua
@@ -57,9 +53,6 @@
 
     localsend
     sing-box
-
-    consul
-    traefik
   ];
 
   # services.postgresql = {
@@ -156,6 +149,7 @@
     # TODO Feel free to add your favorite apps here.
     casks = [
       "qq"
+      "typora"
       #"todesk"
       "github"
       # "karabiner-elements"

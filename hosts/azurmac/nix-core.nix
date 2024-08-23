@@ -12,7 +12,6 @@
       "https://mirrors.ustc.edu.cn/nix-channels/store"
     ];
     experimental-features = [ "nix-command" "flakes" ];
-#experimental-features = [ "nix-command" "flakes" "configurable-impure-env"];
   };
 
   # Allow unfree packages

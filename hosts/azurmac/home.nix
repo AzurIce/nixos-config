@@ -30,6 +30,9 @@ inputs@{ user, config, pkgs, ... }:
 
     # rules
     yabai -m rule --add app="^Karabiner-Elements$" manage=off
+    yabai -m rule --add app="^Clash Nyanpasu$" manage=off
+    yabai -m rule --add app="^访达$" manage=off
+    yabai -m rule --add app="^GitHub Desktop$" manage=off
   '';
 
   programs.zsh = {
