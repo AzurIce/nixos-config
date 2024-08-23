@@ -116,9 +116,20 @@
       alt + shift - space : yabai -m window --toggle float
       alt + shift - t : yabai -m window --toggle topmost
 
-      alt - f : yabai -m space --layout bsp
+      alt - b : yabai -m space --layout bsp
       alt - m : yabai -m space --layout stack
 
+      # Rotate windows clockwise and anticlockwise
+      alt - r         : yabai -m space --rotate 270
+      shift + alt - r : yabai -m space --rotate 90
+
+      # Rotate on X and Y Axis
+      shift + alt - x : yabai -m space --mirror x-axis
+      shift + alt - y : yabai -m space --mirror y-axis
+
+      # Make window native fullscreen
+      alt - f         : yabai -m window --toggle zoom-fullscreen
+      shift + alt - f : yabai -m window --toggle native-fullscreen
     '';
   };
 
