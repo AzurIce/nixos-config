@@ -26,7 +26,11 @@ inputs@{ user, config, pkgs, ... }:
     yabai -m config layout bsp
 
     # paddings and gaps
-    yabai -m config window_gap 8
+    yabai -m config top_padding    4
+    yabai -m config bottom_padding 4
+    yabai -m config left_padding   4
+    yabai -m config right_padding  4
+    yabai -m config window_gap     8
 
     # rules
     yabai -m rule --add app="^Karabiner-Elements$" manage=off
