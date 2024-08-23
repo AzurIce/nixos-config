@@ -12,6 +12,12 @@
 
     # apple-silicon support
     nixos-apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
+
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
