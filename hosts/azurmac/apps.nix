@@ -129,7 +129,7 @@
 
       # Make window native fullscreen
       alt - f         : yabai -m window --toggle zoom-fullscreen
-      shift + alt - f : yabai -m window --toggle native-fullscreen
+      # shift + alt - f : yabai -m window --toggle native-fullscreen
     '';
   };
 
@@ -160,6 +160,7 @@
     # TODO Feel free to add your favorite apps here.
     casks = [
       "qq"
+      "wechat"
       "typora"
       #"todesk"
       "github"
