@@ -37,6 +37,7 @@ inputs@{ user, config, pkgs, ... }:
     yabai -m rule --add app="^Clash Nyanpasu$" manage=off
     yabai -m rule --add app="^访达$" manage=off
     yabai -m rule --add app="^GitHub Desktop$" manage=off
+    yabai -m rule --add app="^微信$" manage=off
   '';
 
   programs.zsh = {
