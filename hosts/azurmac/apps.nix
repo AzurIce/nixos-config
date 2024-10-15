@@ -19,6 +19,7 @@
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
     git
+    git-lfs
     # vim
     helix
     alacritty
@@ -35,6 +36,8 @@
     fzf
     yazi
 
+    nil
+    poetry
     bun
     nodejs_22
     nodePackages_latest.pnpm
